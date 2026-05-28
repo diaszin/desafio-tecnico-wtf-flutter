@@ -1,7 +1,38 @@
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
+import 'package:logger/logger.dart';
+import 'package:provider/provider.dart';
 
-void main() {
-  runApp(const MyApp());
+Future<void> main() async{
+  Logger logger = Logger(
+    filter: null,
+    printer: PrettyPrinter(
+      colors: true,
+      printEmojis: true,
+      dateTimeFormat: DateTimeFormat.onlyTimeAndSinceStart,
+    ),
+    output: null
+  );
+
+  
+  await dotenv.load();
+  String? apiToken = dotenv.maybeGet("TMDB_API_KEY");
+  String? baseURL = dotenv.maybeGet("TMDB_BASE_URL");
+
+  runApp(
+    MultiProvider(providers: [
+      Provider<Dio>(create: (_)  => Dio(
+        BaseOptions(
+          baseUrl: baseURL ?? "https://api.themoviedb.org/3",
+          headers: {
+            "Authorization": "Bearer $apiToken"
+          }
+        )
+      )),
+      Provider<Logger>(create: (_) => logger)
+    ])
+  );
 }
 
 class MyApp extends StatelessWidget {
