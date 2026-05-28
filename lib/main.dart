@@ -4,7 +4,7 @@ import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:logger/logger.dart';
 import 'package:provider/provider.dart';
 
-Future<void> main() async{
+Future<void> main() async {
   Logger logger = Logger(
     filter: null,
     printer: PrettyPrinter(
@@ -12,26 +12,36 @@ Future<void> main() async{
       printEmojis: true,
       dateTimeFormat: DateTimeFormat.onlyTimeAndSinceStart,
     ),
-    output: null
+    output: null,
   );
 
-  
   await dotenv.load();
   String? apiToken = dotenv.maybeGet("TMDB_API_KEY");
   String? baseURL = dotenv.maybeGet("TMDB_BASE_URL");
 
+  if (apiToken == null || apiToken.isEmpty) {
+    logger.e("A chave da API não foi localizada");
+  }
+
+  if (baseURL == null || baseURL.isEmpty) {
+    logger.w("Não foi encontrado nenhuma BASE URL, utilizando url padrão ....");
+  }
+
   runApp(
-    MultiProvider(providers: [
-      Provider<Dio>(create: (_)  => Dio(
-        BaseOptions(
-          baseUrl: baseURL ?? "https://api.themoviedb.org/3",
-          headers: {
-            "Authorization": "Bearer $apiToken"
-          }
-        )
-      )),
-      Provider<Logger>(create: (_) => logger)
-    ])
+    MultiProvider(
+      providers: [
+        Provider<Dio>(
+          create: (_) => Dio(
+            BaseOptions(
+              baseUrl: baseURL ?? "https://api.themoviedb.org/3",
+              headers: {"Authorization": "Bearer $apiToken"},
+            ),
+          ),
+        ),
+        Provider<Logger>(create: (_) => logger),
+      ],
+      child: const MyApp(),
+    ),
   );
 }
 
