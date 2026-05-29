@@ -1,4 +1,6 @@
-import 'package:desafio_tecnico_wtf/domain/models/popular_movies.dart';
+
+
+import 'package:desafio_tecnico_wtf/domain/entities/popular_movies.dart';
 
 class PopularMoviesApiModel {
   int? page;
