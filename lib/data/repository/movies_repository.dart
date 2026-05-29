@@ -1,5 +1,6 @@
 import 'package:desafio_tecnico_wtf/data/models/popular_movies_api_model.dart';
 import 'package:desafio_tecnico_wtf/data/services/movies_service.dart';
+import 'package:desafio_tecnico_wtf/data/services/movies_service_impl.dart';
 import 'package:desafio_tecnico_wtf/domain/entities/popular_movies.dart';
 import 'package:desafio_tecnico_wtf/domain/repository/movie_repository.dart';
 import 'package:result_dart/result_dart.dart';
@@ -10,6 +11,7 @@ class MoviesRepositoryHttp extends MovieRepository{
   MoviesRepositoryHttp({required MoviesService moviesService})
     : _moviesService = moviesService;
 
+  @override
   Future<Result<List<PopularMovies>>> getPopularMovies() async {
     PopularMoviesApiModel? externalResponseApiModel = await _moviesService
         .getPopularMovies()

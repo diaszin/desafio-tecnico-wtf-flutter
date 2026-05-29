@@ -1,5 +1,6 @@
 import 'package:desafio_tecnico_wtf/data/repository/movies_repository.dart';
 import 'package:desafio_tecnico_wtf/data/services/movies_service.dart';
+import 'package:desafio_tecnico_wtf/data/services/movies_service_impl.dart';
 import 'package:desafio_tecnico_wtf/ui/movie/view_models/all_movies_view_models.dart';
 import 'package:desafio_tecnico_wtf/ui/movie/views/all_movies_view.dart';
 import 'package:dio/dio.dart';
@@ -45,7 +46,7 @@ Future<void> main() async {
           ),
         ),
         Provider<Logger>(create: (_) => logger),
-        Provider(create: (context) => MoviesService(apiClient: context.read())),
+        Provider<MoviesService>(create: (context) => MoviesServiceImpl(apiClient: context.read()) as MoviesService),
         Provider<MovieRepository>(
           create: (context) =>
               MoviesRepositoryHttp(moviesService: context.read())
