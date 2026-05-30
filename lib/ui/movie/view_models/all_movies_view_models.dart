@@ -17,6 +17,7 @@ class AllMoviesViewModels extends ChangeNotifier{
     List<PopularMovies> list = await _movieRepository.getPopularMovies().getOrDefault([]);
 
     popularMovies = list;
+    logger.i("Consultando os filmes populares");
 
     notifyListeners();
   }
