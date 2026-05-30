@@ -1,13 +1,17 @@
 import 'package:desafio_tecnico_wtf/ui/core/widgets/button_widget.dart';
 import 'package:desafio_tecnico_wtf/ui/core/widgets/login_form_field_widget.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:logger/logger.dart';
+import 'package:provider/provider.dart';
 
 class LoginFormWidget extends StatelessWidget {
   const LoginFormWidget({super.key});
 
   @override
   Widget build(BuildContext context) {
+    Logger logger = context.read<Logger>();
     Size platform = MediaQuery.of(context).size;
     return Expanded(
       child: Container(
@@ -48,7 +52,13 @@ class LoginFormWidget extends StatelessWidget {
             Column(
               spacing: 36,
               children: [
-                Button(text: "Entrar"),
+                Button(
+                  text: "Entrar",
+                  onPressed: () {
+                    logger.i("Redirecionando para a página HOME ...");
+                    context.go("/home");
+                  },
+                ),
                 Row(
                   mainAxisAlignment: .spaceEvenly,
                   children: [
