@@ -1,6 +1,7 @@
 import 'package:desafio_tecnico_wtf/data/repository/movies_repository.dart';
 import 'package:desafio_tecnico_wtf/data/services/movies_service.dart';
 import 'package:desafio_tecnico_wtf/data/services/movies_service_impl.dart';
+import 'package:desafio_tecnico_wtf/router.dart';
 import 'package:desafio_tecnico_wtf/ui/movie/view_models/all_movies_view_models.dart';
 import 'package:desafio_tecnico_wtf/ui/movie/views/all_movies_view.dart';
 import 'package:desafio_tecnico_wtf/ui/movie/views/home_view.dart';
@@ -71,7 +72,8 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return MaterialApp.router(
+      routerConfig: router,
       title: 'Cine Strem',
       theme: ThemeData(
         // This is the theme of your application.
@@ -92,7 +94,6 @@ class MyApp extends StatelessWidget {
         colorScheme: .fromSeed(seedColor: Colors.deepPurple),
       ),
       debugShowCheckedModeBanner: false,
-      home: const MyHomeView(title: 'Flutter Demo Home Page'),
     );
   }
 }

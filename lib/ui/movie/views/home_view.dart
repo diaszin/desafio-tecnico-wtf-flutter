@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'all_movies_view.dart';
 
 class MyHomeView extends StatefulWidget {
-  const MyHomeView({super.key, required this.title});
+  const MyHomeView({super.key});
 
   // This widget is the home page of your application. It is stateful, meaning
   // that it has a State object (defined below) that contains fields that affect
@@ -14,8 +14,6 @@ class MyHomeView extends StatefulWidget {
   // case the title) provided by the parent (in this case the App widget) and
   // used by the build method of the State. Fields in a Widget subclass are
   // always marked "final".
-
-  final String title;
 
   @override
   State<MyHomeView> createState() => _MyHomeViewState();
