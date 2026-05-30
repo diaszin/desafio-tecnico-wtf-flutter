@@ -1,3 +1,4 @@
+import 'package:desafio_tecnico_wtf/ui/core/widgets/app_title.dart';
 import 'package:desafio_tecnico_wtf/ui/core/widgets/login_form_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -22,10 +23,7 @@ class LoginHeroSection extends StatelessWidget {
           image: AssetImage("assets/hero_banner.png"),
           fit: .cover,
           filterQuality: .low,
-          colorFilter: ColorFilter.mode(
-            Colors.black54,
-            BlendMode.darken,
-          ),
+          colorFilter: ColorFilter.mode(Colors.black54, BlendMode.darken),
         ),
       ),
       child: Column(
@@ -36,30 +34,7 @@ class LoginHeroSection extends StatelessWidget {
               mainAxisAlignment: .center,
               crossAxisAlignment: .center,
               children: [
-                Text.rich(
-                  TextSpan(
-                    children: [
-                      TextSpan(
-                        text: "Cine",
-                        style: GoogleFonts.fraunces(
-                          color: Color(0xFFEF233C),
-                          fontSize: 40,
-                          fontWeight: .w300,
-                          fontStyle: .italic,
-                        ),
-                      ),
-                      TextSpan(
-                        text: "Stream",
-                        style: GoogleFonts.fraunces(
-                          color: Color(0xFFF0F5FF),
-                          fontSize: 40,
-                          fontWeight: .w600,
-                          decoration: .none,
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
+                AppTitle(fontSize: 40, letterSpacing: -0.9),
                 Text(
                   "O CINEMA QUE VOCÊ AMA",
                   style: GoogleFonts.dmMono(
