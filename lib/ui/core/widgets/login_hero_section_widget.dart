@@ -31,7 +31,7 @@ class LoginHeroSection extends StatelessWidget {
       child: Column(
         children: [
           Container(
-            height: height * 0.45,
+            height: height * 0.38,
             child: Column(
               mainAxisAlignment: .center,
               crossAxisAlignment: .center,

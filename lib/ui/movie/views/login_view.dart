@@ -11,7 +11,10 @@ class LoginView extends StatelessWidget {
   Widget build(BuildContext context) {
     Size platformSize = MediaQuery.of(context).size;
     return Scaffold(
-      body: LoginHeroSection(height: platformSize.height, width: platformSize.width)
+      body: LoginHeroSection(
+        height: platformSize.height,
+        width: platformSize.width,
+      ),
     );
   }
 }
