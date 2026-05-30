@@ -41,7 +41,7 @@ class PopularMoviesApiModel {
 
 class Results {
   bool? adult;
-  String? backdropPath;
+  late String backdropPath;
   List<int>? genreIds;
   int? id;
   late String title;
@@ -49,7 +49,7 @@ class Results {
   late String originalTitle;
   String? overview;
   double? popularity;
-  String? posterPath;
+  late String posterPath;
   String? releaseDate;
   bool? softcore;
   bool? video;
@@ -58,7 +58,7 @@ class Results {
 
   Results({
     this.adult,
-    this.backdropPath,
+    required this.backdropPath,
     this.genreIds,
     this.id,
     required this.title,
@@ -66,7 +66,7 @@ class Results {
     required this.originalTitle,
     this.overview,
     this.popularity,
-    this.posterPath,
+    required this.posterPath,
     this.releaseDate,
     this.softcore,
     this.video,

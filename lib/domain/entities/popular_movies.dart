@@ -1,6 +1,6 @@
 class PopularMovies {
   bool? adult;
-  String? backdropPath;
+  String backdropPath;
   List<int>? genreIds;
   int? id;
   String title;
@@ -8,16 +8,20 @@ class PopularMovies {
   String originalTitle;
   String? overview;
   double? popularity;
-  String? posterPath;
+  String posterPath;
   String? releaseDate;
   bool? softcore;
   bool? video;
   double? voteAverage;
   int? voteCount;
 
+  String get posterPathUrl =>  "https://image.tmdb.org/t/p/w500$posterPath";
+
+  String get backdropPathUrl => "https://image.tmdb.org/t/p/w500$backdropPath";
+
   PopularMovies({
     this.adult,
-    this.backdropPath,
+    required this.backdropPath,
     this.genreIds,
     this.id,
     required this.title,
@@ -25,7 +29,7 @@ class PopularMovies {
     required this.originalTitle,
     this.overview,
     this.popularity,
-    this.posterPath,
+    required this.posterPath,
     this.releaseDate,
     this.softcore,
     this.video,
