@@ -43,7 +43,7 @@ class _LoginFormFieldState extends State<LoginFormField> {
         ),
         TextField(
           style: GoogleFonts.roboto(color: Color(0xFFEDE8DD), fontSize: 15),
-          obscureText: !_passwordIsVisible,
+          obscureText: _passwordIsVisible || !widget.isPassword ? false : true,
           enableSuggestions: !widget.isPassword,
           autocorrect: !widget.isPassword,
           keyboardType: !widget.isPassword
