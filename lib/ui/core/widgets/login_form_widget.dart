@@ -83,6 +83,15 @@ class LoginFormWidget extends StatelessWidget {
                     ),
                   ],
                 ),
+                Text(
+                  "© 2024 CineStream",
+                  style: GoogleFonts.roboto(
+                    fontWeight: .w400,
+                    fontSize: 10,
+                    letterSpacing: 1,
+                    color: Color(0x806E6878),
+                  ),
+                ),
               ],
             ),
           ],
