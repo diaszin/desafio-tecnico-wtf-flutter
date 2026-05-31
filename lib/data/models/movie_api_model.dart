@@ -195,34 +195,6 @@ class MovieApiModel {
     );
   }
 
-  Movie toDomain() {
-    return Movie(
-      id: id ?? (throw ArgumentError('Movie.id não pode ser nulo')),
-      title: title ?? (throw ArgumentError('Movie.title não pode ser nulo')),
-      originalTitle: originalTitle ?? title ?? '',
-      overview: overview ?? '',
-      tagline: tagline,
-      posterPath: posterPath,
-      backdropPath: backdropPath,
-      homepage: homepage,
-      imdbId: imdbId,
-      releaseDate: DateTime.parse("$releaseDate 00:00:00"),
-      runtime: runtime ?? 0,
-      voteAverage: voteAverage ?? 0.0,
-      voteCount: voteCount ?? 0,
-      popularity: popularity ?? 0.0,
-      budget: budget ?? 0,
-      revenue: revenue ?? 0,
-      status: status ?? '',
-      originalLanguage: originalLanguage ?? '',
-      isAdult: adult ?? false,
-      hasVideo: video ?? false,
-      originCountry: originCountry ?? [],
-      genres: genres != null
-          ? genres!.map((element) => element.toDomain()).toList()
-          : [],
-    );
-  }
 }
 
 class ProductionCompany {

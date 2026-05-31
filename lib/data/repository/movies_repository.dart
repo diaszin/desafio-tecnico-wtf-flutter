@@ -1,3 +1,4 @@
+import 'package:desafio_tecnico_wtf/data/mapper/movie_mapper.dart';
 import 'package:desafio_tecnico_wtf/data/models/movie_api_model.dart';
 import 'package:desafio_tecnico_wtf/data/models/popular_movies_api_model.dart';
 import 'package:desafio_tecnico_wtf/data/services/movies_service.dart';
@@ -32,7 +33,7 @@ class MoviesRepositoryHttp extends MovieRepository {
     }
 
     List<Movie> popularMoviesList = results
-        .map((movie) => movie.toDomain())
+        .map((movie) => MovieMapper.modelToDomain(movie))
         .toList();
 
     return Success(popularMoviesList);
@@ -48,7 +49,7 @@ class MoviesRepositoryHttp extends MovieRepository {
       return Failure(Exception("Não foi possível consultar o filme"));
     }
 
-    Movie movie = externalResponse.toDomain();
+    Movie movie = MovieMapper.modelToDomain(externalResponse);
 
     return Success(movie);
   }
