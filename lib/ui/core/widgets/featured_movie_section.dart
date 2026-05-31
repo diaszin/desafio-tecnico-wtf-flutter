@@ -14,35 +14,21 @@ class FeaturedMovieSection extends StatelessWidget {
     final double imageHeight = platformSize.height * 0.4;
     final double width = platformSize.width;
 
-    double bigButtonWidth = platformSize.width * 0.6;
-    double secondaryButtonWidth = 57;
-
-
     return Column(
       children: [
-        _HeroImage(
-          imageURL: movie.backdropPathUrl,
-          title: movie.title,
-          height: imageHeight,
-          width: width,
-        ),
-        Row(
-          mainAxisAlignment: .spaceEvenly,
+        Stack(
+          alignment: .bottomLeft,
           children: [
-            Button(
-              text: "Assistir agora",
-              icon: Icons.play_arrow,
-              iconColor: Color(0xFFEDE8DD),
-              width: bigButtonWidth,
+            _HeroImage(
+              imageURL: movie.backdropPathUrl,
+              title: movie.title,
+              height: imageHeight,
+              width: width,
             ),
-            Button(
-              icon: Icons.bookmark_outline,
-              iconColor: Color(0xFFEDE8DD),
-              width: secondaryButtonWidth,
-              type: ButtonType.secondary,
-            ),
+            _HeroTitle(title: movie.title, height: imageHeight, width: width),
           ],
         ),
+        _HeroButtonGroup(width: width),
       ],
     );
   }
@@ -64,7 +50,6 @@ class _HeroImage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Stack(
-      alignment: .bottomLeft,
       children: [
         Image.network(
           imageURL,
@@ -87,7 +72,6 @@ class _HeroImage extends StatelessWidget {
             ),
           ),
         ),
-        _HeroTitle(title: title, height: height, width: width),
       ],
     );
   }
@@ -108,7 +92,7 @@ class _HeroTitle extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       margin: .only(bottom: height * 0.14, left: width * 0.09),
-      child: Container(
+      child: SizedBox(
         width: double.infinity,
         child: Column(
           crossAxisAlignment: .start,
@@ -148,6 +132,35 @@ class _HeroTitle extends StatelessWidget {
           ],
         ),
       ),
+    );
+  }
+}
+
+class _HeroButtonGroup extends StatelessWidget {
+  final double width;
+
+  const _HeroButtonGroup({required this.width});
+
+  @override
+  Widget build(BuildContext context) {
+    double bigButtonWidth = width * 0.6;
+    double secondaryButtonWidth = 57;
+    return Row(
+      mainAxisAlignment: .spaceEvenly,
+      children: [
+        Button(
+          text: "Assistir agora",
+          icon: Icons.play_arrow,
+          iconColor: Color(0xFFEDE8DD),
+          width: bigButtonWidth,
+        ),
+        Button(
+          icon: Icons.bookmark_outline,
+          iconColor: Color(0xFFEDE8DD),
+          width: secondaryButtonWidth,
+          type: ButtonType.secondary,
+        ),
+      ],
     );
   }
 }
