@@ -1,5 +1,5 @@
 import 'package:desafio_tecnico_wtf/data/models/movie_api_model.dart';
-import 'package:desafio_tecnico_wtf/domain/entities/popular_movies.dart';
+
 
 class PopularMoviesApiModel {
   int? page;
@@ -24,17 +24,6 @@ class PopularMoviesApiModel {
     }
     totalPages = json['total_pages'];
     totalResults = json['total_results'];
-  }
-
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['page'] = this.page;
-    if (this.results != null) {
-      data['results'] = this.results!.map((v) => v.toJson()).toList();
-    }
-    data['total_pages'] = this.totalPages;
-    data['total_results'] = this.totalResults;
-    return data;
   }
 }
 
