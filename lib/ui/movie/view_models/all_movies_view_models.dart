@@ -4,17 +4,23 @@ import 'package:flutter/cupertino.dart';
 import 'package:logger/logger.dart';
 import 'package:result_dart/result_dart.dart';
 
-class AllMoviesViewModels extends ChangeNotifier{
-
+class AllMoviesViewModels extends ChangeNotifier {
   final MovieRepository _movieRepository;
   final Logger logger;
 
-  AllMoviesViewModels({required MovieRepository movieRepository, required this.logger}) : _movieRepository = movieRepository;
+  AllMoviesViewModels({
+    required MovieRepository movieRepository,
+    required this.logger,
+  }) : _movieRepository = movieRepository;
 
   List<PopularMovies> popularMovies = [];
 
+  PopularMovies get featuredMovie => popularMovies[0];
+
   Future<void> loadPopularMovies() async {
-    List<PopularMovies> list = await _movieRepository.getPopularMovies().getOrDefault([]);
+    List<PopularMovies> list = await _movieRepository
+        .getPopularMovies()
+        .getOrDefault([]);
 
     popularMovies = list;
     logger.i("Consultando os filmes populares");

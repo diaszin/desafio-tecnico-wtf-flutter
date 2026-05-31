@@ -1,4 +1,7 @@
+import 'package:desafio_tecnico_wtf/ui/core/widgets/featured_movie_section.dart';
+import 'package:desafio_tecnico_wtf/ui/core/widgets/movie_app_menu_widget.dart';
 import 'package:desafio_tecnico_wtf/ui/movie/view_models/all_movies_view_models.dart';
+
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -6,39 +9,33 @@ class AllMoviesView extends StatefulWidget {
   const AllMoviesView({super.key});
 
   @override
-  State<AllMoviesView> createState() => _AllMoviesView();
+  State<AllMoviesView> createState() => _AllMoviesViewState();
 }
 
-class _AllMoviesView extends State<AllMoviesView> {
+class _AllMoviesViewState extends State<AllMoviesView> {
   @override
   void initState() {
     super.initState();
 
-    if (mounted) {
-      Future.microtask(
-        () => {context.read<AllMoviesViewModels>().loadPopularMovies()},
-      );
-    }
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      context.read<AllMoviesViewModels>().loadPopularMovies();
+    });
   }
 
   @override
   Widget build(BuildContext context) {
-    final vm = context.read<AllMoviesViewModels>();
-    vm.loadPopularMovies();
+    final vm = context.watch<AllMoviesViewModels>();
 
-    final popularMovies = context.watch<AllMoviesViewModels>().popularMovies;
+    final popularMovies = vm.popularMovies;
+    final featuredMovie = vm.featuredMovie;
 
-    return ListView.separated(
-      itemCount: popularMovies.length,
-      separatorBuilder: (_, __) => const Divider(height: 1),
-      itemBuilder: (ctx, i) {
-        final u = popularMovies[i];
-        return ListTile(
-          leading: CircleAvatar(child: Text(u.title[0])),
-          title: Text(u.title),
-          subtitle: Text(u.originalLanguage),
-        );
-      },
+    return Scaffold(
+      extendBodyBehindAppBar: true,
+      appBar: MovieAppMenu(),
+      backgroundColor: Color(0xFF1C1D21),
+      body: SafeArea(
+        child: Column(children: [FeaturedMovieSection(movie: featuredMovie)]),
+      ),
     );
   }
 }

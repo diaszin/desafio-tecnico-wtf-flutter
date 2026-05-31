@@ -3,8 +3,6 @@ import 'package:desafio_tecnico_wtf/data/services/movies_service.dart';
 import 'package:desafio_tecnico_wtf/data/services/movies_service_impl.dart';
 import 'package:desafio_tecnico_wtf/router.dart';
 import 'package:desafio_tecnico_wtf/ui/movie/view_models/all_movies_view_models.dart';
-import 'package:desafio_tecnico_wtf/ui/movie/views/all_movies_view.dart';
-import 'package:desafio_tecnico_wtf/ui/movie/views/home_view.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
