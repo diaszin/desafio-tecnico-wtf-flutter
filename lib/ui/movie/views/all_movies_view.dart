@@ -37,41 +37,45 @@ class _AllMoviesViewState extends State<AllMoviesView> {
       appBar: MovieAppMenu(),
       backgroundColor: Color(0xFF1C1D21),
       body: SafeArea(
-        child: Column(
-          mainAxisAlignment: .start,
-          crossAxisAlignment: .start,
-          children: [
-            ListenableBuilder(
-              listenable: vm.loadPopularMoviesCommand,
-              builder: (context, _) {
-                final command = vm.loadPopularMoviesCommand.value;
+        child: SingleChildScrollView(
+          child: Column(
+            mainAxisAlignment: .start,
+            crossAxisAlignment: .start,
+            children: [
+              ListenableBuilder(
+                listenable: vm.loadPopularMoviesCommand,
+                builder: (context, _) {
+                  final command = vm.loadPopularMoviesCommand.value;
 
-                if (command.isRunning) {
-                  return FeaturedMovieSectionShimmer();
-                }
+                  if (command.isRunning) {
+                    return FeaturedMovieSectionShimmer();
+                  }
 
-                if (command.isSuccess) {
-                  return FeaturedMovieSection(
-                    movie: featuredMovie,
-                    summaryList: _getSummaryList(featuredMovie),
-                  );
-                }
+                  if (command.isSuccess) {
+                    return FeaturedMovieSection(
+                      movie: featuredMovie,
+                      summaryList: _getSummaryList(featuredMovie),
+                    );
+                  }
 
-                return SizedBox.shrink();
-              },
-            ),
-            Container(
-              padding: .only(left: 24),
-              child: Column(
-                children: [
-                  MovieList(
-                    title: "Populares no momento",
-                    moviesList: popularMovies,
-                  ),
-                ],
+                  return SizedBox.shrink();
+                },
               ),
-            ),
-          ],
+              Container(
+                margin: .only(top: 48),
+                padding: .only(left: 24),
+                child: Column(
+                  spacing: 32,
+                  children: [
+                    MovieList(
+                      title: "Populares no momento",
+                      moviesList: popularMovies,
+                    ),
+                  ],
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );
