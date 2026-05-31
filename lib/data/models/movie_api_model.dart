@@ -1,3 +1,5 @@
+import 'package:desafio_tecnico_wtf/data/models/production_company_api_model.dart';
+import 'package:desafio_tecnico_wtf/data/models/spoken_language_api_model.dart';
 import 'package:desafio_tecnico_wtf/domain/entities/movie.dart';
 
 import 'genre_api_model.dart';
@@ -17,13 +19,13 @@ class MovieApiModel {
   final String? overview;
   final double? popularity;
   final String? posterPath;
-  final List<ProductionCompany>? productionCompanies;
+  final List<ProductionCompanyApiModel>? productionCompanies;
   final List<ProductionCountry>? productionCountries;
   final String? releaseDate;
   final int? revenue;
   final int? runtime;
   final bool? softcore;
-  final List<SpokenLanguage>? spokenLanguages;
+  final List<SpokenLanguageApiModel>? spokenLanguages;
   final String? status;
   final String? tagline;
   final String? title;
@@ -80,7 +82,7 @@ class MovieApiModel {
       popularity: (json['popularity'] as num?)?.toDouble(),
       posterPath: json['poster_path'] as String?,
       productionCompanies: (json['production_companies'] as List<dynamic>?)
-          ?.map((v) => ProductionCompany.fromJson(v as Map<String, dynamic>))
+          ?.map((v) => ProductionCompanyApiModel.fromJson(v as Map<String, dynamic>))
           .toList(),
       productionCountries: (json['production_countries'] as List<dynamic>?)
           ?.map((v) => ProductionCountry.fromJson(v as Map<String, dynamic>))
@@ -90,7 +92,7 @@ class MovieApiModel {
       runtime: json['runtime'] as int?,
       softcore: json['softcore'] as bool?,
       spokenLanguages: (json['spoken_languages'] as List<dynamic>?)
-          ?.map((v) => SpokenLanguage.fromJson(v as Map<String, dynamic>))
+          ?.map((v) => SpokenLanguageApiModel.fromJson(v as Map<String, dynamic>))
           .toList(),
       status: json['status'] as String?,
       tagline: json['tagline'] as String?,
@@ -104,34 +106,7 @@ class MovieApiModel {
 
 }
 
-class ProductionCompany {
-  final int? id;
-  final String? logoPath;
-  final String? name;
-  final String? originCountry;
 
-  const ProductionCompany({
-    this.id,
-    this.logoPath,
-    this.name,
-    this.originCountry,
-  });
-
-  factory ProductionCompany.fromJson(Map<String, dynamic> json) =>
-      ProductionCompany(
-        id: json['id'] as int?,
-        logoPath: json['logo_path'] as String?,
-        name: json['name'] as String?,
-        originCountry: json['origin_country'] as String?,
-      );
-
-  Map<String, dynamic> toJson() => {
-    'id': id,
-    'logo_path': logoPath,
-    'name': name,
-    'origin_country': originCountry,
-  };
-}
 
 class ProductionCountry {
   final String? iso31661;
@@ -148,22 +123,4 @@ class ProductionCountry {
   Map<String, dynamic> toJson() => {'iso_3166_1': iso31661, 'name': name};
 }
 
-class SpokenLanguage {
-  final String? englishName;
-  final String? iso6391;
-  final String? name;
 
-  const SpokenLanguage({this.englishName, this.iso6391, this.name});
-
-  factory SpokenLanguage.fromJson(Map<String, dynamic> json) => SpokenLanguage(
-    englishName: json['english_name'] as String?,
-    iso6391: json['iso_639_1'] as String?,
-    name: json['name'] as String?,
-  );
-
-  Map<String, dynamic> toJson() => {
-    'english_name': englishName,
-    'iso_639_1': iso6391,
-    'name': name,
-  };
-}

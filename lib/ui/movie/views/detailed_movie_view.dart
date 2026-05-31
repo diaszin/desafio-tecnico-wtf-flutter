@@ -1,4 +1,5 @@
 import 'package:desafio_tecnico_wtf/domain/entities/movie.dart';
+import 'package:desafio_tecnico_wtf/domain/entities/spoken_language.dart';
 import 'package:desafio_tecnico_wtf/ui/core/widgets/featured_movie_section.dart';
 import 'package:desafio_tecnico_wtf/ui/core/widgets/featured_skeleton_widget.dart';
 import 'package:desafio_tecnico_wtf/ui/core/widgets/movie_app_menu_widget.dart';
@@ -68,24 +69,28 @@ class _DetailedMovieViewState extends State<DetailedMovieView> {
                         ),
                         _MovieInfoItem(
                           title: "Produtoras",
-                          description: movie.popularity.toString(),
+                          description: movie.production
+                              .map((element) => element.name)
+                              .join(", "),
                         ),
                         Row(
                           spacing: 24,
                           children: [
                             _MovieInfoItem(
-                              title: "Produtoras",
-                              description: movie.popularity.toString(),
+                              title: "Orçamento",
+                              description: _formatMoney(movie.budget),
                             ),
                             _MovieInfoItem(
-                              title: "Produtoras",
-                              description: movie.popularity.toString(),
+                              title: "Bilheteria",
+                              description: _formatMoney(movie.revenue),
                             ),
                           ],
                         ),
                         _MovieInfoItem(
-                          title: "Produtoras",
-                          description: movie.popularity.toString(),
+                          title: "Idiomas",
+                          description: movie.languages
+                              .map((element) => element.englishName)
+                              .join(", "),
                         ),
                       ],
                     ),
@@ -100,6 +105,8 @@ class _DetailedMovieViewState extends State<DetailedMovieView> {
   }
 
   List<Widget> _getSummaryList(Movie movie) {
+    final genres = movie.genres.map((element) => element.name).join(", ");
+
     return [
       Row(
         mainAxisSize: MainAxisSize.min,
@@ -107,9 +114,35 @@ class _DetailedMovieViewState extends State<DetailedMovieView> {
         children: [Icon(Icons.star), Text(movie.voteAverage.toString())],
       ),
       Text(movie.releaseDate.year.toString()),
-      Text(movie.genres.join(", ")),
-      Text(movie.runtime.toString()),
+      Text(genres),
+      Text(_formatMovieRunTime(movie.runtime)),
     ];
+  }
+
+  String _formatMovieRunTime(int runtime) {
+    Duration duration = Duration(minutes: runtime);
+
+    String hour = duration.inHours.toString();
+    String minutes = duration.inMinutes
+        .remainder(60)
+        .toString()
+        .padLeft(2, '0');
+
+    String formattedMovieTime = '${hour}h ${minutes}m';
+
+    return formattedMovieTime;
+  }
+
+  String _formatMoney(num value) {
+    if (value >= 1e9) {
+      return 'US\$ ${(value / 1e9).toStringAsFixed(1)} bilhões';
+    }
+
+    if (value >= 1e6) {
+      return 'US\$ ${(value / 1e6).toStringAsFixed(1)} milhões';
+    }
+
+    return 'US\$ ${value.toInt()}';
   }
 }
 

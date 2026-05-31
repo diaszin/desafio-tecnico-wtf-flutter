@@ -1,4 +1,6 @@
 import 'package:desafio_tecnico_wtf/domain/entities/genre.dart';
+import 'package:desafio_tecnico_wtf/domain/entities/production_company.dart';
+import 'package:desafio_tecnico_wtf/domain/entities/spoken_language.dart';
 
 class Movie {
   final int id;
@@ -23,6 +25,8 @@ class Movie {
   final bool hasVideo;
   final List<String> originCountry;
   final List<Genre> genres;
+  final List<ProductionCompany> production;
+  final List<SpokenLanguage> languages;
 
   String get posterPathURL => "https://image.tmdb.org/t/p/w500$posterPath";
 
@@ -48,8 +52,10 @@ class Movie {
     this.tagline,
     this.posterPath,
     this.backdropPath,
-    this.homepage,
+    required this.production,
     this.imdbId,
     required this.genres,
+    this.homepage,
+    required this.languages,
   });
 }

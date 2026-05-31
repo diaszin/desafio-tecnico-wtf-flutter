@@ -2,7 +2,6 @@ import 'package:desafio_tecnico_wtf/data/models/movie_api_model.dart';
 import 'package:desafio_tecnico_wtf/domain/entities/movie.dart';
 
 class MovieMapper {
-
   MovieMapper._();
 
   static Movie modelToDomain(MovieApiModel model) {
@@ -31,6 +30,14 @@ class MovieMapper {
       originCountry: model.originCountry ?? [],
       genres: model.genres != null
           ? model.genres!.map((element) => element.toDomain()).toList()
+          : [],
+      production: model.productionCompanies != null
+          ? model.productionCompanies!
+                .map((element) => element.toDomain())
+                .toList()
+          : [],
+      languages: model.spokenLanguages != null
+          ? model.spokenLanguages!.map((element) => element.toDomain()).toList()
           : [],
     );
   }
