@@ -13,6 +13,8 @@ class LoginFormWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     Logger logger = context.read<Logger>();
     Size platform = MediaQuery.of(context).size;
+    double bigButtonWidth = platform.width * 0.9;
+
     return Expanded(
       child: Container(
         decoration: BoxDecoration(
@@ -58,6 +60,7 @@ class LoginFormWidget extends StatelessWidget {
                     logger.i("Redirecionando para a página HOME ...");
                     context.go("/home");
                   },
+                  width: bigButtonWidth,
                 ),
                 Row(
                   mainAxisAlignment: .spaceEvenly,
