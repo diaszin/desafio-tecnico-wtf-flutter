@@ -9,7 +9,7 @@ class PopularMovies {
   String? overview;
   double? popularity;
   String posterPath;
-  String? releaseDate;
+  DateTime? releaseDate;
   bool? softcore;
   bool? video;
   double? voteAverage;

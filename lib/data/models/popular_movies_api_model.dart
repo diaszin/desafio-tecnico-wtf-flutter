@@ -1,5 +1,3 @@
-
-
 import 'package:desafio_tecnico_wtf/domain/entities/popular_movies.dart';
 
 class PopularMoviesApiModel {
@@ -113,20 +111,20 @@ class Results {
   }
 
   PopularMovies toDomain() => PopularMovies(
-      adult: adult,
-      backdropPath: backdropPath,
-      genreIds: genreIds,
-      id: id,
-      title: title,
-      originalLanguage: originalLanguage,
-      originalTitle: originalTitle,
-      overview: overview,
-      popularity: popularity,
-      posterPath: posterPath,
-      releaseDate: releaseDate,
-      softcore: softcore,
-      video: video,
-      voteAverage: voteAverage,
-      voteCount: voteCount,
-    );
+    adult: adult,
+    backdropPath: backdropPath,
+    genreIds: genreIds,
+    id: id,
+    title: title,
+    originalLanguage: originalLanguage,
+    originalTitle: originalTitle,
+    overview: overview,
+    popularity: popularity,
+    posterPath: posterPath,
+    releaseDate: DateTime.parse("${releaseDate!} 00:00:00"),
+    softcore: softcore,
+    video: video,
+    voteAverage: voteAverage,
+    voteCount: voteCount,
+  );
 }
