@@ -5,14 +5,20 @@ import 'package:google_fonts/google_fonts.dart';
 
 class FeaturedMovieSection extends StatelessWidget {
   final PopularMovies movie;
+  final List<Widget> summaryList;
 
-  const FeaturedMovieSection({super.key, required this.movie});
+  const FeaturedMovieSection({
+    super.key,
+    required this.movie,
+    required this.summaryList,
+  });
 
   @override
   Widget build(BuildContext context) {
     final Size platformSize = MediaQuery.of(context).size;
     final double imageHeight = platformSize.height * 0.4;
     final double width = platformSize.width;
+
 
     return Column(
       children: [
@@ -25,7 +31,12 @@ class FeaturedMovieSection extends StatelessWidget {
               height: imageHeight,
               width: width,
             ),
-            _HeroTitle(title: movie.title, height: imageHeight, width: width),
+            _HeroTitle(
+              title: movie.title,
+              height: imageHeight,
+              width: width,
+              summaryList: summaryList,
+            ),
           ],
         ),
         _HeroButtonGroup(width: width),
@@ -81,11 +92,13 @@ class _HeroTitle extends StatelessWidget {
   final String title;
   final double height;
   final double width;
+  final List<Widget> summaryList;
 
   const _HeroTitle({
     required this.title,
     required this.height,
     required this.width,
+    required this.summaryList,
   });
 
   @override
@@ -121,8 +134,8 @@ class _HeroTitle extends StatelessWidget {
                   child: ListView.separated(
                     shrinkWrap: true,
                     scrollDirection: Axis.horizontal,
-                    itemCount: 5,
-                    itemBuilder: (context, index) => Text('Item $index'),
+                    itemCount: summaryList.length,
+                    itemBuilder: (context, index) => summaryList[index],
                     separatorBuilder: (_, __) =>
                         const VerticalDivider(color: Color(0x66EDE8DD)),
                   ),

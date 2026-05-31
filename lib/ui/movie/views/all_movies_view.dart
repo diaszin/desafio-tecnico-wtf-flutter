@@ -29,12 +29,31 @@ class _AllMoviesViewState extends State<AllMoviesView> {
     final popularMovies = vm.popularMovies;
     final featuredMovie = vm.featuredMovie;
 
+    List<Widget> movieSummaryList = [
+      Row(
+        mainAxisSize: MainAxisSize.min,
+        spacing: 3,
+        children: [
+          Icon(Icons.star),
+          Text(featuredMovie.voteAverage.toString()),
+        ],
+      ),
+      Text(featuredMovie.releaseDate!.year.toString()),
+    ];
+
     return Scaffold(
       extendBodyBehindAppBar: true,
       appBar: MovieAppMenu(),
       backgroundColor: Color(0xFF1C1D21),
       body: SafeArea(
-        child: Column(children: [FeaturedMovieSection(movie: featuredMovie)]),
+        child: Column(
+          children: [
+            FeaturedMovieSection(
+              movie: featuredMovie,
+              summaryList: movieSummaryList,
+            ),
+          ],
+        ),
       ),
     );
   }
