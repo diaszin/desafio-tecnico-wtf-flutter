@@ -2,9 +2,11 @@ import 'package:desafio_tecnico_wtf/domain/entities/popular_movies.dart';
 import 'package:desafio_tecnico_wtf/ui/core/widgets/featured_movie_section.dart';
 import 'package:desafio_tecnico_wtf/ui/core/widgets/featured_skeleton_widget.dart';
 import 'package:desafio_tecnico_wtf/ui/core/widgets/movie_app_menu_widget.dart';
+import 'package:desafio_tecnico_wtf/ui/core/widgets/movie_list_widget.dart';
 import 'package:desafio_tecnico_wtf/ui/movie/view_models/all_movies_view_models.dart';
 
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'package:result_dart/result_dart.dart';
 
@@ -36,6 +38,8 @@ class _AllMoviesViewState extends State<AllMoviesView> {
       backgroundColor: Color(0xFF1C1D21),
       body: SafeArea(
         child: Column(
+          mainAxisAlignment: .start,
+          crossAxisAlignment: .start,
           children: [
             ListenableBuilder(
               listenable: vm.loadPopularMoviesCommand,
@@ -55,6 +59,17 @@ class _AllMoviesViewState extends State<AllMoviesView> {
 
                 return SizedBox.shrink();
               },
+            ),
+            Container(
+              padding: .only(left: 24),
+              child: Column(
+                children: [
+                  MovieList(
+                    title: "Populares no momento",
+                    moviesList: popularMovies,
+                  ),
+                ],
+              ),
             ),
           ],
         ),
