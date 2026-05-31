@@ -1,9 +1,12 @@
+import 'package:desafio_tecnico_wtf/domain/entities/popular_movies.dart';
 import 'package:desafio_tecnico_wtf/ui/core/widgets/featured_movie_section.dart';
+import 'package:desafio_tecnico_wtf/ui/core/widgets/featured_skeleton_widget.dart';
 import 'package:desafio_tecnico_wtf/ui/core/widgets/movie_app_menu_widget.dart';
 import 'package:desafio_tecnico_wtf/ui/movie/view_models/all_movies_view_models.dart';
 
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:result_dart/result_dart.dart';
 
 class AllMoviesView extends StatefulWidget {
   const AllMoviesView({super.key});
@@ -17,29 +20,15 @@ class _AllMoviesViewState extends State<AllMoviesView> {
   void initState() {
     super.initState();
 
-    WidgetsBinding.instance.addPostFrameCallback((_) {
-      context.read<AllMoviesViewModels>().loadPopularMovies();
-    });
+    context.read<AllMoviesViewModel>().loadPopularMoviesCommand.execute();
   }
 
   @override
   Widget build(BuildContext context) {
-    final vm = context.watch<AllMoviesViewModels>();
+    final vm = context.watch<AllMoviesViewModel>();
 
     final popularMovies = vm.popularMovies;
     final featuredMovie = vm.featuredMovie;
-
-    List<Widget> movieSummaryList = [
-      Row(
-        mainAxisSize: MainAxisSize.min,
-        spacing: 3,
-        children: [
-          Icon(Icons.star),
-          Text(featuredMovie.voteAverage.toString()),
-        ],
-      ),
-      Text(featuredMovie.releaseDate!.year.toString()),
-    ];
 
     return Scaffold(
       extendBodyBehindAppBar: true,
@@ -48,13 +37,43 @@ class _AllMoviesViewState extends State<AllMoviesView> {
       body: SafeArea(
         child: Column(
           children: [
-            FeaturedMovieSection(
-              movie: featuredMovie,
-              summaryList: movieSummaryList,
+            ListenableBuilder(
+              listenable: vm.loadPopularMoviesCommand,
+              builder: (context, _) {
+                final command = vm.loadPopularMoviesCommand.value;
+
+                if (command.isRunning) {
+                  return FeaturedMovieSectionShimmer();
+                }
+
+                if (command.isSuccess) {
+                  return FeaturedMovieSection(
+                    movie: featuredMovie,
+                    summaryList: _getSummaryList(featuredMovie),
+                  );
+                }
+
+                return SizedBox.shrink();
+              },
             ),
           ],
         ),
       ),
     );
+  }
+
+  List<Widget> _getSummaryList(PopularMovies? movie) {
+    if (movie == null) {
+      return [];
+    }
+
+    return [
+      Row(
+        mainAxisSize: MainAxisSize.min,
+        spacing: 3,
+        children: [Icon(Icons.star), Text(movie.voteAverage.toString())],
+      ),
+      Text(movie.releaseDate.year.toString()),
+    ];
   }
 }

@@ -2,9 +2,10 @@ import 'package:desafio_tecnico_wtf/domain/entities/popular_movies.dart';
 import 'package:desafio_tecnico_wtf/ui/core/widgets/button_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:shimmer_ai/shimmer_ai.dart';
 
 class FeaturedMovieSection extends StatelessWidget {
-  final PopularMovies movie;
+  final PopularMovies? movie;
   final List<Widget> summaryList;
 
   const FeaturedMovieSection({
@@ -19,6 +20,11 @@ class FeaturedMovieSection extends StatelessWidget {
     final double imageHeight = platformSize.height * 0.4;
     final double width = platformSize.width;
 
+    if (movie == null) {
+      return SizedBox();
+    }
+
+    PopularMovies featured = movie!;
 
     return Column(
       children: [
@@ -26,13 +32,13 @@ class FeaturedMovieSection extends StatelessWidget {
           alignment: .bottomLeft,
           children: [
             _HeroImage(
-              imageURL: movie.backdropPathUrl,
-              title: movie.title,
+              imageURL: featured.backdropPathUrl,
+              title: featured.title,
               height: imageHeight,
               width: width,
             ),
             _HeroTitle(
-              title: movie.title,
+              title: featured.title,
               height: imageHeight,
               width: width,
               summaryList: summaryList,

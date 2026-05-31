@@ -1,30 +1,53 @@
 import 'package:desafio_tecnico_wtf/domain/entities/popular_movies.dart';
 import 'package:desafio_tecnico_wtf/domain/repository/movie_repository.dart';
-import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:logger/logger.dart';
+import 'package:result_command/result_command.dart';
 import 'package:result_dart/result_dart.dart';
 
-class AllMoviesViewModels extends ChangeNotifier {
+class AllMoviesViewModel extends ChangeNotifier {
   final MovieRepository _movieRepository;
-  final Logger logger;
+  final Logger _logger;
 
-  AllMoviesViewModels({
+  AllMoviesViewModel({
     required MovieRepository movieRepository,
-    required this.logger,
-  }) : _movieRepository = movieRepository;
+    required Logger logger,
+  }) : _movieRepository = movieRepository,
+       _logger = logger {
+    loadPopularMoviesCommand = Command0(_loadPopularMovies);
+  }
 
   List<PopularMovies> popularMovies = [];
 
-  PopularMovies get featuredMovie => popularMovies[0];
+  PopularMovies? get featuredMovie =>
+      popularMovies.isNotEmpty ? popularMovies[0] : null;
 
-  Future<void> loadPopularMovies() async {
-    List<PopularMovies> list = await _movieRepository
-        .getPopularMovies()
-        .getOrDefault([]);
+  late final Command0<List<PopularMovies>> loadPopularMoviesCommand;
 
-    popularMovies = list;
-    logger.i("Consultando os filmes populares");
+  Future<Result<List<PopularMovies>>> _loadPopularMovies() async {
 
-    notifyListeners();
+    final result = await _movieRepository.getPopularMovies();
+
+    // Somente para mostrar o uso do Shimmer
+    await Future.delayed(Duration(seconds: 2));
+
+    return result.fold(
+      (list) {
+        popularMovies = list;
+        _logger.i('Filmes populares carregados: ${list.length}');
+        notifyListeners();
+        return Success(list);
+      },
+      (error) {
+        _logger.e('Erro ao carregar filmes populares: $error');
+        return Failure(error);
+      },
+    );
+  }
+
+  @override
+  void dispose() {
+    loadPopularMoviesCommand.dispose();
+    super.dispose();
   }
 }

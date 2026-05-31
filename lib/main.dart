@@ -53,7 +53,7 @@ Future<void> main() async {
                   as MovieRepository,
         ),
         ChangeNotifierProvider(
-          create: (context) => AllMoviesViewModels(
+          create: (context) => AllMoviesViewModel(
             movieRepository: context.read(),
             logger: context.read(),
           ),

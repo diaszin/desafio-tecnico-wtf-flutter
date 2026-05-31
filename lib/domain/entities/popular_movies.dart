@@ -9,13 +9,13 @@ class PopularMovies {
   String? overview;
   double? popularity;
   String posterPath;
-  DateTime? releaseDate;
+  DateTime releaseDate;
   bool? softcore;
   bool? video;
   double? voteAverage;
   int? voteCount;
 
-  String get posterPathUrl =>  "https://image.tmdb.org/t/p/w500$posterPath";
+  String get posterPathUrl => "https://image.tmdb.org/t/p/w500$posterPath";
 
   String get backdropPathUrl => "https://image.tmdb.org/t/p/w500$backdropPath";
 
@@ -30,7 +30,7 @@ class PopularMovies {
     this.overview,
     this.popularity,
     required this.posterPath,
-    this.releaseDate,
+    required this.releaseDate,
     this.softcore,
     this.video,
     this.voteAverage,
