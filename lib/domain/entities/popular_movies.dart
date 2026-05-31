@@ -2,7 +2,7 @@ class PopularMovies {
   bool? adult;
   String backdropPath;
   List<int>? genreIds;
-  int? id;
+  int id;
   String title;
   String originalLanguage;
   String originalTitle;
@@ -23,7 +23,7 @@ class PopularMovies {
     this.adult,
     required this.backdropPath,
     this.genreIds,
-    this.id,
+    required this.id,
     required this.title,
     required this.originalLanguage,
     required this.originalTitle,

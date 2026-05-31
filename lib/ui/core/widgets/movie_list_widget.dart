@@ -1,5 +1,6 @@
 import 'package:desafio_tecnico_wtf/domain/entities/popular_movies.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class MovieList extends StatelessWidget {
@@ -65,7 +66,11 @@ class _CardList extends StatelessWidget {
         separatorBuilder: (_, __) => const SizedBox(width: 16),
         itemBuilder: (context, index) {
           PopularMovies movie = list[index];
-          return _MovieCard(size: cardSize, image: movie.posterPathUrl);
+          return _MovieCard(
+            size: cardSize,
+            image: movie.posterPathUrl,
+            id: movie.id,
+          );
         },
       ),
     );
@@ -75,17 +80,28 @@ class _CardList extends StatelessWidget {
 class _MovieCard extends StatelessWidget {
   final Size size;
   final String image;
+  final int id;
 
-  const _MovieCard({super.key, required this.size, required this.image});
+  const _MovieCard({
+    super.key,
+    required this.size,
+    required this.image,
+    required this.id,
+  });
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      height: size.height,
-      width: size.width,
-      decoration: BoxDecoration(
-        image: DecorationImage(image: NetworkImage(image), fit: .cover),
-        borderRadius: .circular(16),
+    return GestureDetector(
+      onTap: () {
+        context.go("/movie/$id");
+      },
+      child: Container(
+        height: size.height,
+        width: size.width,
+        decoration: BoxDecoration(
+          image: DecorationImage(image: NetworkImage(image), fit: .cover),
+          borderRadius: .circular(16),
+        ),
       ),
     );
   }

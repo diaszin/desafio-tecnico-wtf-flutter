@@ -41,7 +41,7 @@ class Results {
   bool? adult;
   late String backdropPath;
   List<int>? genreIds;
-  int? id;
+  late int id;
   late String title;
   late String originalLanguage;
   late String originalTitle;
@@ -58,7 +58,7 @@ class Results {
     this.adult,
     required this.backdropPath,
     this.genreIds,
-    this.id,
+    required this.id,
     required this.title,
     required this.originalLanguage,
     required this.originalTitle,
