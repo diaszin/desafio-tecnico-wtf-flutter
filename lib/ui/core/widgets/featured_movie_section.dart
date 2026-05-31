@@ -1,11 +1,10 @@
-import 'package:desafio_tecnico_wtf/domain/entities/popular_movies.dart';
+import 'package:desafio_tecnico_wtf/domain/entities/movie.dart';
 import 'package:desafio_tecnico_wtf/ui/core/widgets/button_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:shimmer_ai/shimmer_ai.dart';
 
 class FeaturedMovieSection extends StatelessWidget {
-  final PopularMovies? movie;
+  final Movie? movie;
   final List<Widget> summaryList;
 
   const FeaturedMovieSection({
@@ -24,7 +23,9 @@ class FeaturedMovieSection extends StatelessWidget {
       return SizedBox();
     }
 
-    PopularMovies featured = movie!;
+
+    Movie featured = movie!;
+
 
     return Column(
       children: [

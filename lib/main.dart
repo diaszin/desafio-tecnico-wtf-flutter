@@ -3,6 +3,7 @@ import 'package:desafio_tecnico_wtf/data/services/movies_service.dart';
 import 'package:desafio_tecnico_wtf/data/services/movies_service_impl.dart';
 import 'package:desafio_tecnico_wtf/router.dart';
 import 'package:desafio_tecnico_wtf/ui/movie/view_models/all_movies_view_models.dart';
+import 'package:desafio_tecnico_wtf/ui/movie/view_models/movie_view_model.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
@@ -46,7 +47,9 @@ Future<void> main() async {
           ),
         ),
         Provider<Logger>(create: (_) => logger),
-        Provider<MoviesService>(create: (context) => MoviesServiceImpl(apiClient: context.read()) as MoviesService),
+        Provider<MoviesService>(
+          create: (context) => MoviesServiceImpl(apiClient: context.read()),
+        ),
         Provider<MovieRepository>(
           create: (context) =>
               MoviesRepositoryHttp(moviesService: context.read())
@@ -54,8 +57,14 @@ Future<void> main() async {
         ),
         ChangeNotifierProvider(
           create: (context) => AllMoviesViewModel(
-            movieRepository: context.read(),
-            logger: context.read(),
+            movieRepository: context.read<MovieRepository>(),
+            logger: context.read<Logger>(),
+          ),
+        ),
+        ChangeNotifierProvider(
+          create: (context) => MovieViewModel(
+            movieRepository: context.read<MovieRepository>(),
+            logger: context.read<Logger>(),
           ),
         ),
       ],

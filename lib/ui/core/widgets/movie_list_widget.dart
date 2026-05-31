@@ -1,11 +1,12 @@
-import 'package:desafio_tecnico_wtf/domain/entities/popular_movies.dart';
+import 'package:desafio_tecnico_wtf/domain/entities/movie.dart';
+
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class MovieList extends StatelessWidget {
   final String title;
-  final List<PopularMovies>? moviesList;
+  final List<Movie>? moviesList;
   final double height;
 
   const MovieList({
@@ -22,7 +23,7 @@ class MovieList extends StatelessWidget {
     if (moviesList == null) {
       return SizedBox.shrink();
     }
-    List<PopularMovies> list = moviesList!;
+    List<Movie> list = moviesList!;
     return Column(
       mainAxisAlignment: .start,
       crossAxisAlignment: .start,
@@ -43,7 +44,7 @@ class MovieList extends StatelessWidget {
 }
 
 class _CardList extends StatelessWidget {
-  final List<PopularMovies> list;
+  final List<Movie> list;
   final double height;
   final double width;
 
@@ -65,10 +66,10 @@ class _CardList extends StatelessWidget {
         itemCount: list.length,
         separatorBuilder: (_, __) => const SizedBox(width: 16),
         itemBuilder: (context, index) {
-          PopularMovies movie = list[index];
+          Movie movie = list[index];
           return _MovieCard(
             size: cardSize,
-            image: movie.posterPathUrl,
+            image: movie.posterPathURL,
             id: movie.id,
           );
         },

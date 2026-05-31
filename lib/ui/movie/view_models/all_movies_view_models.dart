@@ -1,3 +1,4 @@
+import 'package:desafio_tecnico_wtf/domain/entities/movie.dart';
 import 'package:desafio_tecnico_wtf/domain/entities/popular_movies.dart';
 import 'package:desafio_tecnico_wtf/domain/repository/movie_repository.dart';
 import 'package:flutter/material.dart';
@@ -17,15 +18,15 @@ class AllMoviesViewModel extends ChangeNotifier {
     loadPopularMoviesCommand = Command0(_loadPopularMovies);
   }
 
-  List<PopularMovies> popularMovies = [];
+  List<Movie> popularMovies = [];
 
-  PopularMovies? get featuredMovie =>
-      popularMovies.isNotEmpty ? popularMovies[0] : null;
+  Movie? get featuredMovie =>  popularMovies.isNotEmpty
+      ? popularMovies[0]
+      : null;
 
-  late final Command0<List<PopularMovies>> loadPopularMoviesCommand;
+  late final Command0<List<Movie>> loadPopularMoviesCommand;
 
-  Future<Result<List<PopularMovies>>> _loadPopularMovies() async {
-
+  Future<Result<List<Movie>>> _loadPopularMovies() async {
     final result = await _movieRepository.getPopularMovies();
 
     // Somente para mostrar o uso do Shimmer

@@ -15,6 +15,8 @@ class PopularMovies {
   double? voteAverage;
   int? voteCount;
 
+
+  String get teste => "";
   String get posterPathUrl => "https://image.tmdb.org/t/p/w500$posterPath";
 
   String get backdropPathUrl => "https://image.tmdb.org/t/p/w500$backdropPath";

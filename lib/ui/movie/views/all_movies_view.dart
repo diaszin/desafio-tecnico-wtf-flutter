@@ -1,4 +1,4 @@
-import 'package:desafio_tecnico_wtf/domain/entities/popular_movies.dart';
+import 'package:desafio_tecnico_wtf/domain/entities/movie.dart';
 import 'package:desafio_tecnico_wtf/ui/core/widgets/featured_movie_section.dart';
 import 'package:desafio_tecnico_wtf/ui/core/widgets/featured_skeleton_widget.dart';
 import 'package:desafio_tecnico_wtf/ui/core/widgets/movie_app_menu_widget.dart';
@@ -6,9 +6,8 @@ import 'package:desafio_tecnico_wtf/ui/core/widgets/movie_list_widget.dart';
 import 'package:desafio_tecnico_wtf/ui/movie/view_models/all_movies_view_models.dart';
 
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
+
 import 'package:provider/provider.dart';
-import 'package:result_dart/result_dart.dart';
 
 class AllMoviesView extends StatefulWidget {
   const AllMoviesView({super.key});
@@ -53,7 +52,7 @@ class _AllMoviesViewState extends State<AllMoviesView> {
 
                   if (command.isSuccess) {
                     return FeaturedMovieSection(
-                      movie: featuredMovie,
+                      movie: featuredMovie  ,
                       summaryList: _getSummaryList(featuredMovie),
                     );
                   }
@@ -81,7 +80,7 @@ class _AllMoviesViewState extends State<AllMoviesView> {
     );
   }
 
-  List<Widget> _getSummaryList(PopularMovies? movie) {
+  List<Widget> _getSummaryList(Movie? movie) {
     if (movie == null) {
       return [];
     }
