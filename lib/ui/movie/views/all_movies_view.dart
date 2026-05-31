@@ -1,4 +1,5 @@
 import 'package:desafio_tecnico_wtf/domain/entities/movie.dart';
+import 'package:desafio_tecnico_wtf/ui/core/widgets/button_widget.dart';
 import 'package:desafio_tecnico_wtf/ui/core/widgets/featured_movie_section.dart';
 import 'package:desafio_tecnico_wtf/ui/core/widgets/featured_skeleton_widget.dart';
 import 'package:desafio_tecnico_wtf/ui/core/widgets/movie_app_menu_widget.dart';
@@ -6,6 +7,7 @@ import 'package:desafio_tecnico_wtf/ui/core/widgets/movie_list_widget.dart';
 import 'package:desafio_tecnico_wtf/ui/movie/view_models/all_movies_view_models.dart';
 
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 import 'package:provider/provider.dart';
 
@@ -37,43 +39,69 @@ class _AllMoviesViewState extends State<AllMoviesView> {
       backgroundColor: Color(0xFF1C1D21),
       body: SafeArea(
         child: SingleChildScrollView(
-          child: Column(
-            mainAxisAlignment: .start,
-            crossAxisAlignment: .start,
-            children: [
-              ListenableBuilder(
-                listenable: vm.loadPopularMoviesCommand,
-                builder: (context, _) {
-                  final command = vm.loadPopularMoviesCommand.value;
+          child: ListenableBuilder(
+            listenable: vm.loadPopularMoviesCommand,
+            builder: (context, _) {
+              final command = vm.loadPopularMoviesCommand.value;
 
-                  if (command.isRunning) {
-                    return FeaturedMovieSectionShimmer();
-                  }
+              if (command.isRunning) {
+                return FeaturedMovieSectionShimmer();
+              }
 
-                  if (command.isSuccess) {
-                    return FeaturedMovieSection(
-                      movie: featuredMovie  ,
-                      summaryList: _getSummaryList(featuredMovie),
-                    );
-                  }
+              if (command.isFailure) {
+                return SizedBox(
+                  height: MediaQuery.of(context).size.height,
+                  width: MediaQuery.of(context).size.width,
+                  child: Column(
+                    crossAxisAlignment: .center,
+                    mainAxisAlignment: .center,
+                    spacing: 10,
+                    children: [
+                      Text(
+                        "Ops! Não conseguimos consultar os filmes",
+                        style: GoogleFonts.roboto(
+                          color: Color(0xFFF0F5FF),
+                          fontWeight: .w400,
+                          fontSize: 16,
+                        ),
+                      ),
+                      Button(
+                        text: "Tentar novamente",
+                        onPressed: () => vm.loadPopularMoviesCommand.execute(),
+                      ),
+                    ],
+                  ),
+                );
+              }
 
-                  return SizedBox.shrink();
-                },
-              ),
-              Container(
-                margin: .only(top: 48),
-                padding: .only(left: 24),
-                child: Column(
-                  spacing: 32,
+              if (command.isSuccess) {
+                return Column(
+                  mainAxisAlignment: .start,
+                  crossAxisAlignment: .start,
                   children: [
-                    MovieList(
-                      title: "Populares no momento",
-                      moviesList: popularMovies,
+                    FeaturedMovieSection(
+                      movie: featuredMovie,
+                      summaryList: _getSummaryList(featuredMovie),
+                    ),
+                    Container(
+                      margin: .only(top: 48),
+                      padding: .only(left: 24),
+                      child: Column(
+                        spacing: 32,
+                        children: [
+                          MovieList(
+                            title: "Populares no momento",
+                            moviesList: popularMovies,
+                          ),
+                        ],
+                      ),
                     ),
                   ],
-                ),
-              ),
-            ],
+                );
+              }
+
+              return SizedBox.shrink();
+            },
           ),
         ),
       ),

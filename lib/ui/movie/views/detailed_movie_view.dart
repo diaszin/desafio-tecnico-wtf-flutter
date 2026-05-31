@@ -8,6 +8,8 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 
+import '../../core/widgets/button_widget.dart';
+
 class DetailedMovieView extends StatefulWidget {
   final int id;
 
@@ -39,8 +41,36 @@ class _DetailedMovieViewState extends State<DetailedMovieView> {
           child: ListenableBuilder(
             listenable: vm.loadMovie,
             builder: (context, data) {
-              if (vm.loadMovie.value.isRunning || vm.movie == null) {
+              final command = vm.loadMovie.value;
+              if (command.isRunning) {
                 return FeaturedMovieSectionShimmer();
+              }
+
+              if (command.isFailure) {
+                return SizedBox(
+                  height: MediaQuery.of(context).size.height,
+                  width: MediaQuery.of(context).size.width,
+                  child: Column(
+                    crossAxisAlignment: .center,
+                    mainAxisAlignment: .center,
+                    spacing: 10,
+                    children: [
+                      Text(
+                        "Pedimos desculpas! Não conseguimos encontrar o filme selecionado",
+                        style: GoogleFonts.roboto(
+                          color: Color(0xFFF0F5FF),
+                          fontWeight: .w400,
+                          fontSize: 16,
+                        ),
+                        textAlign: .center,
+                      ),
+                      Button(
+                        text: "Tentar novamente",
+                        onPressed: () => vm.loadMovie.execute(widget.id),
+                      ),
+                    ],
+                  ),
+                );
               }
 
               final movie = vm.movie!;
@@ -134,6 +164,9 @@ class _DetailedMovieViewState extends State<DetailedMovieView> {
   }
 
   String _formatMoney(num value) {
+    if (value == 0) {
+      return "Não divulgado";
+    }
     if (value >= 1e9) {
       return 'US\$ ${(value / 1e9).toStringAsFixed(1)} bilhões';
     }
