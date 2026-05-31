@@ -4,6 +4,7 @@ import 'package:desafio_tecnico_wtf/ui/core/widgets/featured_skeleton_widget.dar
 import 'package:desafio_tecnico_wtf/ui/core/widgets/movie_app_menu_widget.dart';
 import 'package:desafio_tecnico_wtf/ui/movie/view_models/movie_view_model.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 
 class DetailedMovieView extends StatefulWidget {
@@ -24,7 +25,6 @@ class _DetailedMovieViewState extends State<DetailedMovieView> {
     });
   }
 
-
   @override
   Widget build(BuildContext context) {
     final vm = context.watch<MovieViewModel>();
@@ -35,25 +35,64 @@ class _DetailedMovieViewState extends State<DetailedMovieView> {
       backgroundColor: Color(0xFF1C1D21),
       body: SafeArea(
         child: SingleChildScrollView(
-          child: Column(
-            children: [
-              ListenableBuilder(
-                listenable: vm.loadMovie,
-                builder: (context, data) {
-                  if (vm.loadMovie.value.isRunning || vm.movie == null) {
-                    return FeaturedMovieSectionShimmer();
-                  }
+          child: ListenableBuilder(
+            listenable: vm.loadMovie,
+            builder: (context, data) {
+              if (vm.loadMovie.value.isRunning || vm.movie == null) {
+                return FeaturedMovieSectionShimmer();
+              }
 
+              final movie = vm.movie!;
 
-                  final movie = vm.movie!;
-
-                  return FeaturedMovieSection(
+              return Column(
+                children: [
+                  FeaturedMovieSection(
                     movie: movie,
                     summaryList: _getSummaryList(movie),
-                  );
-                },
-              ),
-            ],
+                  ),
+                  Container(
+                    margin: .symmetric(horizontal: 34, vertical: 24),
+                    child: Column(
+                      spacing: 24,
+                      mainAxisAlignment: .start,
+                      crossAxisAlignment: .start,
+                      children: [
+                        Text(
+                          movie.overview,
+                          style: GoogleFonts.roboto(
+                            fontWeight: .w400,
+                            fontSize: 14,
+                            color: Color(0xFFEDE8DD),
+                          ),
+                          textAlign: .left,
+                        ),
+                        _MovieInfoItem(
+                          title: "Produtoras",
+                          description: movie.popularity.toString(),
+                        ),
+                        Row(
+                          spacing: 24,
+                          children: [
+                            _MovieInfoItem(
+                              title: "Produtoras",
+                              description: movie.popularity.toString(),
+                            ),
+                            _MovieInfoItem(
+                              title: "Produtoras",
+                              description: movie.popularity.toString(),
+                            ),
+                          ],
+                        ),
+                        _MovieInfoItem(
+                          title: "Produtoras",
+                          description: movie.popularity.toString(),
+                        ),
+                      ],
+                    ),
+                  ),
+                ],
+              );
+            },
           ),
         ),
       ),
@@ -71,5 +110,37 @@ class _DetailedMovieViewState extends State<DetailedMovieView> {
       Text(movie.genres.join(", ")),
       Text(movie.runtime.toString()),
     ];
+  }
+}
+
+class _MovieInfoItem extends StatelessWidget {
+  final String title;
+  final String description;
+
+  const _MovieInfoItem({required this.title, required this.description});
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      crossAxisAlignment: .start,
+      children: [
+        Text(
+          "$title:",
+          style: GoogleFonts.roboto(
+            fontWeight: .w400,
+            fontSize: 14,
+            color: Color(0xFFEDE8DD),
+          ),
+        ),
+        Text(
+          description,
+          style: GoogleFonts.roboto(
+            fontWeight: .w400,
+            fontSize: 14,
+            color: Color(0x99EDE8DD),
+          ),
+        ),
+      ],
+    );
   }
 }
