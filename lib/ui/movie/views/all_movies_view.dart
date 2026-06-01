@@ -25,6 +25,7 @@ class _AllMoviesViewState extends State<AllMoviesView> {
     super.initState();
 
     context.read<AllMoviesViewModel>().loadPopularMoviesCommand.execute();
+    context.read<AllMoviesViewModel>().loadMostRatedMoviesCommand.execute();
   }
 
   @override
@@ -33,6 +34,7 @@ class _AllMoviesViewState extends State<AllMoviesView> {
 
     final popularMovies = vm.popularMovies;
     final featuredMovie = vm.featuredMovie;
+    final mostRatedMovies = vm.mostRatedMovies;
 
     return Scaffold(
       extendBodyBehindAppBar: true,
@@ -68,7 +70,10 @@ class _AllMoviesViewState extends State<AllMoviesView> {
                       ),
                       Button(
                         text: "Tentar novamente",
-                        onPressed: () => vm.loadPopularMoviesCommand.execute(),
+                        onPressed: () {
+                          vm.loadPopularMoviesCommand.execute();
+                          vm.loadMostRatedMoviesCommand.execute();
+                        },
                       ),
                     ],
                   ),
@@ -93,6 +98,10 @@ class _AllMoviesViewState extends State<AllMoviesView> {
                           MovieList(
                             title: "Populares no momento",
                             moviesList: popularMovies,
+                          ),
+                          MovieList(
+                            title: "Bem avaliados",
+                            moviesList: mostRatedMovies,
                           ),
                         ],
                       ),

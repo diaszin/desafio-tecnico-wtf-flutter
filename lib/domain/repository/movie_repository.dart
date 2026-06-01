@@ -4,4 +4,5 @@ import 'package:result_dart/result_dart.dart';
 abstract class MovieRepository {
   Future<Result<List<Movie>>> getPopularMovies();
   Future<Result<Movie>> getMovie(int id);
+  Future<Result<List<Movie>>> getMostRated();
 }

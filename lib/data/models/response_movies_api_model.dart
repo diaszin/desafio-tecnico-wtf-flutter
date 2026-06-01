@@ -1,20 +1,20 @@
 import 'package:desafio_tecnico_wtf/data/models/movie_api_model.dart';
 
 
-class PopularMoviesApiModel {
+class ResponseMoviesApiModel {
   int? page;
   List<MovieApiModel> results = [];
   int? totalPages;
   int? totalResults;
 
-  PopularMoviesApiModel({
+  ResponseMoviesApiModel({
     this.page,
     required this.results,
     this.totalPages,
     this.totalResults,
   });
 
-  PopularMoviesApiModel.fromJson(Map<String, dynamic> json) {
+  ResponseMoviesApiModel.fromJson(Map<String, dynamic> json) {
     page = json['page'];
     if (json['results'] != null) {
       results = <MovieApiModel>[];

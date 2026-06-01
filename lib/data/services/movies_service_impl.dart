@@ -1,5 +1,5 @@
 import 'package:desafio_tecnico_wtf/data/models/movie_api_model.dart';
-import 'package:desafio_tecnico_wtf/data/models/popular_movies_api_model.dart';
+import 'package:desafio_tecnico_wtf/data/models/response_movies_api_model.dart';
 import 'package:dio/dio.dart';
 import 'package:result_dart/result_dart.dart';
 
@@ -11,12 +11,12 @@ class MoviesServiceImpl extends MoviesService {
   MoviesServiceImpl({required Dio apiClient}) : _apiClient = apiClient;
 
   @override
-  Future<Result<PopularMoviesApiModel>> getPopularMovies() async {
+  Future<Result<ResponseMoviesApiModel>> getPopularMovies() async {
     try {
       final response = await _apiClient.get("/movie/popular");
 
       if (response.statusCode == 200) {
-        PopularMoviesApiModel result = PopularMoviesApiModel.fromJson(
+        ResponseMoviesApiModel result = ResponseMoviesApiModel.fromJson(
           response.data,
         );
         return Success(result);
@@ -43,6 +43,26 @@ class MoviesServiceImpl extends MoviesService {
 
       return Failure(
         Exception("Não foi possíve consultar o filme com ID: $id"),
+      );
+    } on Exception catch (error) {
+      return Failure(Exception(error));
+    }
+  }
+
+  @override
+  Future<Result<ResponseMoviesApiModel>> getMostRatedMovies() async {
+    try {
+      final response = await _apiClient.get("/movie/top_rated");
+
+      if (response.statusCode == 200) {
+        ResponseMoviesApiModel result = ResponseMoviesApiModel.fromJson(
+          response.data,
+        );
+        return Success(result);
+      }
+
+      return Failure(
+        Exception("Não foi possível consultar os filmes mais populares"),
       );
     } on Exception catch (error) {
       return Failure(Exception(error));

@@ -2,12 +2,13 @@ import 'package:desafio_tecnico_wtf/domain/entities/movie.dart';
 import 'package:desafio_tecnico_wtf/domain/repository/movie_repository.dart';
 import 'package:result_dart/result_dart.dart';
 
-
 class MockMovieRepository implements MovieRepository {
   Result<List<Movie>>? getPopularMoviesResult;
+  Result<List<Movie>>? getMostRatedResult;
   Result<Movie>? getMovieResult;
 
   int getPopularMoviesCallCount = 0;
+  int getMostRatedCount = 0;
   int getMovieCallCount = 0;
   int? lastRequestedMovieId;
 
@@ -24,5 +25,12 @@ class MockMovieRepository implements MovieRepository {
     lastRequestedMovieId = id;
     return getMovieResult ??
         Failure(Exception('getMovieResult not configured'));
+  }
+
+  @override
+  Future<Result<List<Movie>>> getMostRated() async {
+    getMostRatedCount++;
+    return getMostRatedResult ??
+        Failure(Exception('getPopularMoviesResult not configured'));
   }
 }

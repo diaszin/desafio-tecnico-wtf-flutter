@@ -1,6 +1,6 @@
 import 'package:desafio_tecnico_wtf/data/models/genre_api_model.dart';
 import 'package:desafio_tecnico_wtf/data/models/movie_api_model.dart';
-import 'package:desafio_tecnico_wtf/data/models/popular_movies_api_model.dart';
+import 'package:desafio_tecnico_wtf/data/models/response_movies_api_model.dart';
 import 'package:desafio_tecnico_wtf/data/models/production_company_api_model.dart';
 import 'package:desafio_tecnico_wtf/data/models/spoken_language_api_model.dart';
 import 'package:desafio_tecnico_wtf/domain/entities/genre.dart';
@@ -142,8 +142,8 @@ MovieApiModel movieApiModelFixture({
 }
 
 
-PopularMoviesApiModel popularMoviesApiModelFixture({int count = 2}) {
-  return PopularMoviesApiModel(
+ResponseMoviesApiModel popularMoviesApiModelFixture({int count = 2}) {
+  return ResponseMoviesApiModel(
     page: 1,
     totalPages: 10,
     totalResults: count,

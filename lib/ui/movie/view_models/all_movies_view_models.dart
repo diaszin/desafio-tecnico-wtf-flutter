@@ -15,15 +15,17 @@ class AllMoviesViewModel extends ChangeNotifier {
   }) : _movieRepository = movieRepository,
        _logger = logger {
     loadPopularMoviesCommand = Command0(_loadPopularMovies);
+    loadMostRatedMoviesCommand = Command0(_loadMostRatedMovies);
   }
 
   List<Movie> popularMovies = [];
+  List<Movie> mostRatedMovies = [];
 
-  Movie? get featuredMovie =>  popularMovies.isNotEmpty
-      ? popularMovies[0]
-      : null;
+  Movie? get featuredMovie =>
+      popularMovies.isNotEmpty ? popularMovies[0] : null;
 
   late final Command0<List<Movie>> loadPopularMoviesCommand;
+  late final Command0<List<Movie>> loadMostRatedMoviesCommand;
 
   Future<Result<List<Movie>>> _loadPopularMovies() async {
     final result = await _movieRepository.getPopularMovies();
@@ -45,9 +47,30 @@ class AllMoviesViewModel extends ChangeNotifier {
     );
   }
 
+  Future<Result<List<Movie>>> _loadMostRatedMovies() async {
+    final result = await _movieRepository.getMostRated();
+
+    // Somente para mostrar o uso do Shimmer
+    await Future.delayed(Duration(seconds: 2));
+
+    return result.fold(
+      (list) {
+        mostRatedMovies = list;
+        _logger.i('Filmes bem avaliados carregados: ${list.length}');
+        notifyListeners();
+        return Success(list);
+      },
+      (error) {
+        _logger.e('Erro ao carregar filmes bem avaliados: $error');
+        return Failure(error);
+      },
+    );
+  }
+
   @override
   void dispose() {
     loadPopularMoviesCommand.dispose();
+    loadMostRatedMoviesCommand.dispose();
     super.dispose();
   }
 }
