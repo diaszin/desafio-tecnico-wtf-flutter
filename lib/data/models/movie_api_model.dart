@@ -1,6 +1,5 @@
 import 'package:desafio_tecnico_wtf/data/models/production_company_api_model.dart';
 import 'package:desafio_tecnico_wtf/data/models/spoken_language_api_model.dart';
-import 'package:desafio_tecnico_wtf/domain/entities/movie.dart';
 
 import 'genre_api_model.dart';
 

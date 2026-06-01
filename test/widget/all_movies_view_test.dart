@@ -17,11 +17,11 @@ GoRouter _buildTestRouter({Widget? detailPage}) {
     routes: [
       GoRoute(
         path: '/home',
-        builder: (_, __) => const AllMoviesView(),
+        builder: (_, _) => const AllMoviesView(),
       ),
       GoRoute(
         path: '/movie/:movieid',
-        builder: (_, __) =>
+        builder: (_, _) =>
             detailPage ?? const Scaffold(body: Text('Detalhe')),
       ),
     ],

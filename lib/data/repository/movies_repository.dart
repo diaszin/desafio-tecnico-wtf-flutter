@@ -1,5 +1,4 @@
 import 'package:desafio_tecnico_wtf/data/models/movie_api_model.dart';
-import 'package:desafio_tecnico_wtf/data/models/response_movies_api_model.dart';
 import 'package:desafio_tecnico_wtf/data/services/movies_service.dart';
 import 'package:desafio_tecnico_wtf/domain/entities/movie.dart';
 import 'package:desafio_tecnico_wtf/domain/repository/movie_repository.dart';

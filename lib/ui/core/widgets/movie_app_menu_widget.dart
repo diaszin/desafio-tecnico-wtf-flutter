@@ -1,4 +1,3 @@
-import 'package:desafio_tecnico_wtf/ui/core/theme/app_theme.dart';
 import 'package:desafio_tecnico_wtf/ui/core/widgets/app_title.dart';
 import 'package:desafio_tecnico_wtf/ui/core/widgets/search_widget.dart';
 import 'package:flutter/material.dart';

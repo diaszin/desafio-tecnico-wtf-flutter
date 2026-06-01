@@ -144,7 +144,7 @@ class _HeroTitle extends StatelessWidget {
                     scrollDirection: Axis.horizontal,
                     itemCount: summaryList.length,
                     itemBuilder: (context, index) => summaryList[index],
-                    separatorBuilder: (_, __) =>
+                    separatorBuilder: (_, _) =>
                         VerticalDivider(color: AppColors.cream.withAlpha(0x66)),
                   ),
                 ),

@@ -10,10 +10,10 @@ GoRouter _buildTestRouter({required Widget home}) {
   return GoRouter(
     initialLocation: '/',
     routes: [
-      GoRoute(path: '/', builder: (_, __) => home),
+      GoRoute(path: '/', builder: (_, _) => home),
       GoRoute(
         path: '/movie/:movieid',
-        builder: (_, __) => const Scaffold(body: Text('Detalhe do Filme')),
+        builder: (_, _) => const Scaffold(body: Text('Detalhe do Filme')),
       ),
     ],
   );

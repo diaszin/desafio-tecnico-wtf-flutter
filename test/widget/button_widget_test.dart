@@ -71,7 +71,7 @@ void main() {
       );
       final style = elevatedButton.style;
       final bgColor =
-          style?.backgroundColor?.resolve({}) as Color?;
+          style?.backgroundColor?.resolve({});
 
       expect(bgColor, equals(const Color(0xFFEF233C)));
     });
@@ -91,7 +91,7 @@ void main() {
       );
       final style = iconButton.style;
       final bgColor =
-          style?.backgroundColor?.resolve({}) as Color?;
+          style?.backgroundColor?.resolve({});
 
       expect(bgColor, equals(const Color(0xFF1C1D21)));
     });

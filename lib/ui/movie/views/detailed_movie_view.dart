@@ -1,5 +1,4 @@
 import 'package:desafio_tecnico_wtf/domain/entities/movie.dart';
-import 'package:desafio_tecnico_wtf/domain/entities/spoken_language.dart';
 import 'package:desafio_tecnico_wtf/ui/core/widgets/featured_movie_section.dart';
 import 'package:desafio_tecnico_wtf/ui/core/widgets/featured_skeleton_widget.dart';
 import 'package:desafio_tecnico_wtf/ui/core/widgets/movie_app_menu_widget.dart';

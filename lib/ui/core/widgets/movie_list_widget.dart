@@ -50,7 +50,6 @@ class _CardList extends StatelessWidget {
   final double width;
 
   const _CardList({
-    super.key,
     required this.height,
     required this.width,
     required this.list,
@@ -65,7 +64,7 @@ class _CardList extends StatelessWidget {
       child: ListView.separated(
         scrollDirection: Axis.horizontal,
         itemCount: list.length,
-        separatorBuilder: (_, __) => const SizedBox(width: 16),
+        separatorBuilder: (_, _) => const SizedBox(width: 16),
         itemBuilder: (context, index) {
           Movie movie = list[index];
           return _MovieCard(
@@ -85,7 +84,6 @@ class _MovieCard extends StatelessWidget {
   final int id;
 
   const _MovieCard({
-    super.key,
     required this.size,
     required this.image,
     required this.id,
