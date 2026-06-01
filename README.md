@@ -2,7 +2,7 @@
 
 
 
-<img title="" src="file:///C:/Users/kaiqu/Documents/Projetos/desafio_tecnico_wtf_flutter_geral/desafio-tecnico-wtf/assets/tela1.png" alt="tela1.png" width="171" data-align="inline"><img title="" src="file:///C:/Users/kaiqu/Documents/Projetos/desafio_tecnico_wtf_flutter_geral/desafio-tecnico-wtf/assets/tela2.png" alt="" width="172" data-align="inline">
+<img title="" src="./assets/tela1.png" alt="tela1.png" width="171" data-align="inline"><img title="" src="./assets/tela2.png" alt="" width="172" data-align="inline">
 
 # 🎬 Cine Stream — Desafio Técnico WTF
 
