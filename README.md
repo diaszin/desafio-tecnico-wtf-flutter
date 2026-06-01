@@ -75,6 +75,10 @@ flutter test
 
 Executa todos os casos de teste de Widgets e unitários
 
+
+
+> **Nota:** A página de login foi feito de forma estática. Basta clicar no botão "Entrar" para ser redirecionado para a tela principal
+
 ---
 
 ## ✨ Funcionalidades
