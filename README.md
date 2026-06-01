@@ -59,7 +59,37 @@ flutter run -d <device_id>
 
 Liste os dispositivos disponíveis com `flutter devices`.
 
+
+
+ou
+
+### 5. Rode os testes
+
+```bash
+flutter test
+```
+
+Executa todos os casos de teste de Widgets e unitários
+
 ---
+
+## ✨ Funcionalidades
+
+#### 🎬 Lista de Filmes Populares
+
+Exibe uma lista atualizada dos filmes mais populares, com cards visuais e informações resumidas.
+
+#### 🔍 Detalhes do Filme
+
+Ao selecionar um card, o usuário é direcionado para uma tela com as informações completas do filme selecionado.
+
+#### 🌗 Suporte a Dark/Light Mode
+
+A interface se adapta automaticamente ao tema definido nas configurações do sistema.
+
+> **Nota:** No *light mode*, a cor primária foi alterada para azul como exemplo prático do uso dessa funcionalidade.
+
+
 
 ## 📦 Gerenciador de estado e bibliotecas
 
