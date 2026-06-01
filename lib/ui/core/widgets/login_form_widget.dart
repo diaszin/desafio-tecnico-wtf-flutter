@@ -1,3 +1,4 @@
+import 'package:desafio_tecnico_wtf/ui/core/theme/app_theme.dart';
 import 'package:desafio_tecnico_wtf/ui/core/widgets/button_widget.dart';
 import 'package:desafio_tecnico_wtf/ui/core/widgets/login_form_field_widget.dart';
 import 'package:flutter/material.dart';
@@ -19,8 +20,8 @@ class LoginFormWidget extends StatelessWidget {
       child: Container(
         decoration: BoxDecoration(
           borderRadius: .only(topLeft: .circular(24), topRight: .circular(24)),
-          border: .all(color: Color(0x66EDE8DD)),
-          color: Color(0xFF1C1D21),
+          border: .all(color: AppColors.cream.withAlpha(0x66)),
+          color: Theme.of(context).colorScheme.secondary,
         ),
         padding: EdgeInsets.symmetric(horizontal: 40),
         child: Column(
@@ -42,7 +43,7 @@ class LoginFormWidget extends StatelessWidget {
                   child: Text(
                     "Esqueceu a senha?",
                     style: GoogleFonts.roboto(
-                      color: Color(0xFFEDE8DD),
+                      color: AppColors.cream,
                       fontWeight: .w500,
                       fontSize: 11,
                       letterSpacing: 0.28,
@@ -68,7 +69,7 @@ class LoginFormWidget extends StatelessWidget {
                     Text(
                       "Não possui conta?",
                       style: GoogleFonts.roboto(
-                        color: Color(0xFFF0F5FF),
+                        color: AppColors.iceBlue,
                         fontWeight: .w400,
                         fontSize: 12,
                       ),
@@ -76,7 +77,7 @@ class LoginFormWidget extends StatelessWidget {
                     Text(
                       "Cadastre-se",
                       style: GoogleFonts.roboto(
-                        color: Color(0xFFEF233C),
+                        color: Theme.of(context).colorScheme.primary,
                         fontWeight: .w500,
                         fontSize: 14,
                       ),
@@ -89,7 +90,7 @@ class LoginFormWidget extends StatelessWidget {
                     fontWeight: .w400,
                     fontSize: 10,
                     letterSpacing: 1,
-                    color: Color(0x806E6878),
+                    color: AppColors.mauveGray.withAlpha(0x80),
                   ),
                 ),
               ],

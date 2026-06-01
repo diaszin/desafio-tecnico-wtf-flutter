@@ -62,8 +62,8 @@ void main() {
       await tester.pumpWidget(_buildTestable(mockRepository: mockRepository));
       // Apenas pump (não pumpAndSettle) para capturar o estado de loading
       await tester.pump();
-
       expect(find.byType(FeaturedMovieSectionShimmer), findsOneWidget);
+      await tester.pumpWidget(Container());
     });
   });
 

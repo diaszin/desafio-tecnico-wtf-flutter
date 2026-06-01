@@ -1,3 +1,4 @@
+import 'package:desafio_tecnico_wtf/ui/core/theme/app_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -15,7 +16,7 @@ class AppTitle extends StatelessWidget {
           TextSpan(
             text: "Cine",
             style: GoogleFonts.fraunces(
-              color: Color(0xFFEF233C),
+              color: Theme.of(context).colorScheme.primary,
               fontSize: fontSize,
               fontWeight: .w300,
               fontStyle: .italic,
@@ -25,7 +26,7 @@ class AppTitle extends StatelessWidget {
           TextSpan(
             text: "Stream",
             style: GoogleFonts.fraunces(
-              color: Color(0xFFF0F5FF),
+              color: AppColors.iceBlue,
               fontSize: fontSize,
               fontWeight: .w600,
               decoration: .none,

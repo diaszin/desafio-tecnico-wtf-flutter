@@ -1,3 +1,4 @@
+import 'package:desafio_tecnico_wtf/ui/core/theme/app_theme.dart';
 import 'package:flutter/material.dart';
 
 class SearchButton extends StatelessWidget {
@@ -7,7 +8,7 @@ class SearchButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return IconButton(
       onPressed: () {},
-      icon: const Icon(Icons.search, color: Color(0xFF6E6878)),
+      icon: Icon(Icons.search, color: AppColors.mauveGray),
     );
   }
 }

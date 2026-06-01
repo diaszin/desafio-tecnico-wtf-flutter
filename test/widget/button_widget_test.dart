@@ -24,7 +24,7 @@ void main() {
         ),
       );
 
-      expect(find.byType(ElevatedButton), findsOneWidget);
+      expect(find.byWidgetPredicate((w) => w is ElevatedButton), findsOneWidget);
       expect(find.byIcon(Icons.play_arrow), findsOneWidget);
     });
 
@@ -37,7 +37,7 @@ void main() {
       );
 
       expect(find.byType(IconButton), findsOneWidget);
-      expect(find.byType(ElevatedButton), findsNothing);
+      expect(find.byWidgetPredicate((w) => w is ElevatedButton), findsNothing);
     });
 
     testWidgets('exibe ícone com cor customizada', (tester) async {
@@ -67,7 +67,7 @@ void main() {
       );
 
       final elevatedButton = tester.widget<ElevatedButton>(
-        find.byType(ElevatedButton),
+        find.byWidgetPredicate((w) => w is ElevatedButton),
       );
       final style = elevatedButton.style;
       final bgColor =
@@ -110,7 +110,7 @@ void main() {
         ),
       );
 
-      await tester.tap(find.byType(ElevatedButton));
+      await tester.tap(find.byWidgetPredicate((w) => w is ElevatedButton));
       await tester.pump();
 
       expect(pressed, isTrue);
@@ -122,7 +122,7 @@ void main() {
       );
 
       expect(
-        () async => await tester.tap(find.byType(ElevatedButton)),
+        () async => await tester.tap(find.byWidgetPredicate((w) => w is ElevatedButton)),
         returnsNormally,
       );
     });
@@ -157,7 +157,7 @@ void main() {
       );
 
       final sizedBox = tester.widget<ElevatedButton>(
-        find.byType(ElevatedButton),
+        find.byWidgetPredicate((w) => w is ElevatedButton),
       );
       final fixedSize = sizedBox.style?.fixedSize?.resolve({});
       expect(fixedSize?.width, equals(customWidth));

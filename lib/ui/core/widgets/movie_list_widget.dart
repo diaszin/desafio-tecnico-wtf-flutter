@@ -1,4 +1,5 @@
 import 'package:desafio_tecnico_wtf/domain/entities/movie.dart';
+import 'package:desafio_tecnico_wtf/ui/core/theme/app_theme.dart';
 
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
@@ -34,7 +35,7 @@ class MovieList extends StatelessWidget {
           style: GoogleFonts.roboto(
             fontWeight: .w600,
             fontSize: 16,
-            color: Color(0xFFF5F0EA),
+            color: AppColors.beige,
           ),
         ),
         _CardList(height: height, width: width, list: list),

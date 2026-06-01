@@ -1,3 +1,4 @@
+import 'package:desafio_tecnico_wtf/ui/core/theme/app_theme.dart';
 import 'package:desafio_tecnico_wtf/ui/core/widgets/app_title.dart';
 import 'package:desafio_tecnico_wtf/ui/core/widgets/login_form_widget.dart';
 import 'package:flutter/material.dart';
@@ -38,7 +39,7 @@ class LoginHeroSection extends StatelessWidget {
                 Text(
                   "O CINEMA QUE VOCÊ AMA",
                   style: GoogleFonts.dmMono(
-                    color: Color(0xFFEDE8DD),
+                    color: AppColors.cream,
                     fontSize: 11,
                     fontWeight: .w400,
                   ),

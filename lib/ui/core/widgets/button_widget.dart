@@ -1,3 +1,4 @@
+import 'package:desafio_tecnico_wtf/ui/core/theme/app_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -26,14 +27,14 @@ class Button extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Color buttonColor = switch (type) {
-      ButtonType.primary => Color(0xFFEF233C),
-      ButtonType.secondary => Color(0xFF1C1D21),
+      ButtonType.primary => Theme.of(context).colorScheme.primary,
+      ButtonType.secondary => Theme.of(context).colorScheme.secondary,
     };
     final buttonStyle = ElevatedButton.styleFrom(
       backgroundColor: buttonColor,
       fixedSize: Size(width ?? double.infinity, 57),
       shape: RoundedRectangleBorder(
-        side: BorderSide(color: Color(0x14EDE8DD), width: 0.74),
+        side: BorderSide(color: AppColors.cream.withAlpha(0x14), width: 0.74),
         borderRadius: .circular(16),
       ),
     );
@@ -55,7 +56,7 @@ class Button extends StatelessWidget {
         style: GoogleFonts.roboto(
           fontWeight: .w600,
           fontSize: 14,
-          color: Color(0xFFEDE8DD),
+          color: AppColors.cream,
         ),
       ),
     );

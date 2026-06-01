@@ -1,3 +1,4 @@
+import 'package:desafio_tecnico_wtf/ui/core/theme/app_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -35,14 +36,14 @@ class _LoginFormFieldState extends State<LoginFormField> {
         Text(
           widget.label.toUpperCase(),
           style: GoogleFonts.roboto(
-            color: Color(0xFFEDE8DD),
+            color: AppColors.cream,
             fontWeight: .w500,
             fontSize: 10,
             letterSpacing: 2,
           ),
         ),
         TextField(
-          style: GoogleFonts.roboto(color: Color(0xFFEDE8DD), fontSize: 15),
+          style: GoogleFonts.roboto(color: AppColors.cream, fontSize: 15),
           obscureText: _passwordIsVisible || !widget.isPassword ? false : true,
           enableSuggestions: !widget.isPassword,
           autocorrect: !widget.isPassword,
@@ -59,12 +60,12 @@ class _LoginFormFieldState extends State<LoginFormField> {
                     onPressed: _changeVisiblePassword,
                   ),
             hintText: widget.hintText,
-            hintStyle: GoogleFonts.roboto(color: Color(0x66EDE8DD)),
+            hintStyle: GoogleFonts.roboto(color: AppColors.cream.withAlpha(0x66)),
             border: UnderlineInputBorder(
-              borderSide: BorderSide(color: Color(0x1fEDE8DD)),
+              borderSide: BorderSide(color: AppColors.cream.withAlpha(0x1f)),
             ),
             focusedBorder: UnderlineInputBorder(
-              borderSide: BorderSide(color: Color(0xFFEDE8DD)),
+              borderSide: BorderSide(color: AppColors.cream),
             ),
           ),
         ),

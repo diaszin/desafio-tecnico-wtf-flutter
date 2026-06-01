@@ -1,4 +1,5 @@
 import 'package:desafio_tecnico_wtf/domain/entities/movie.dart';
+import 'package:desafio_tecnico_wtf/ui/core/theme/app_theme.dart';
 import 'package:desafio_tecnico_wtf/ui/core/widgets/button_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -83,7 +84,7 @@ class _HeroImage extends StatelessWidget {
                 end: Alignment.bottomCenter,
                 colors: [
                   Colors.transparent,
-                  Color(0xFF1C1D21).withValues(alpha: 1),
+                  Theme.of(context).colorScheme.secondary.withValues(alpha: 1),
                 ],
                 stops: [0.4, 1.0],
               ),
@@ -121,20 +122,20 @@ class _HeroTitle extends StatelessWidget {
               title,
               style: GoogleFonts.fraunces(
                 fontWeight: .w600,
-                color: Color(0xFFEDE8DD),
+                color: AppColors.cream,
                 fontSize: 24,
               ),
             ),
 
             Theme(
               data: Theme.of(context).copyWith(
-                iconTheme: IconThemeData(color: Color(0x99EDE8DD), size: 12),
+                iconTheme: IconThemeData(color: AppColors.cream.withAlpha(0x99), size: 12),
               ),
               child: DefaultTextStyle(
                 style: GoogleFonts.roboto(
                   fontWeight: .w400,
                   fontSize: 12,
-                  color: Color(0x99EDE8DD),
+                  color: AppColors.cream.withAlpha(0x99),
                 ),
                 child: SizedBox(
                   height: height * 0.05,
@@ -144,7 +145,7 @@ class _HeroTitle extends StatelessWidget {
                     itemCount: summaryList.length,
                     itemBuilder: (context, index) => summaryList[index],
                     separatorBuilder: (_, __) =>
-                        const VerticalDivider(color: Color(0x66EDE8DD)),
+                        VerticalDivider(color: AppColors.cream.withAlpha(0x66)),
                   ),
                 ),
               ),
@@ -171,12 +172,12 @@ class _HeroButtonGroup extends StatelessWidget {
         Button(
           text: "Assistir agora",
           icon: Icons.play_arrow,
-          iconColor: Color(0xFFEDE8DD),
+          iconColor: AppColors.cream,
           width: bigButtonWidth,
         ),
         Button(
           icon: Icons.bookmark_outline,
-          iconColor: Color(0xFFEDE8DD),
+          iconColor: AppColors.cream,
           width: secondaryButtonWidth,
           type: ButtonType.secondary,
         ),

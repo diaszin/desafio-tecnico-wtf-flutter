@@ -1,3 +1,4 @@
+import 'package:desafio_tecnico_wtf/ui/core/theme/app_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:shimmer_ai/shimmer_ai.dart';
 
@@ -21,8 +22,8 @@ class FeaturedMovieSectionShimmer extends StatelessWidget {
       ),
     ).withShimmerAi(
       loading: true,
-      baseColor: const Color(0xFF24262B),
-      highlightColor: const Color(0xFF32353B),
+      baseColor: AppColors.skeletonBase,
+      highlightColor: AppColors.skeletonHighlight,
     );
   }
 }

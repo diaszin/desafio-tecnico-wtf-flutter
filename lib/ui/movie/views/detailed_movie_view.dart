@@ -3,6 +3,7 @@ import 'package:desafio_tecnico_wtf/domain/entities/spoken_language.dart';
 import 'package:desafio_tecnico_wtf/ui/core/widgets/featured_movie_section.dart';
 import 'package:desafio_tecnico_wtf/ui/core/widgets/featured_skeleton_widget.dart';
 import 'package:desafio_tecnico_wtf/ui/core/widgets/movie_app_menu_widget.dart';
+import 'package:desafio_tecnico_wtf/ui/core/theme/app_theme.dart';
 import 'package:desafio_tecnico_wtf/ui/movie/view_models/movie_view_model.dart';
 import 'package:desafio_tecnico_wtf/utils/formatters.dart';
 import 'package:flutter/material.dart';
@@ -36,7 +37,7 @@ class _DetailedMovieViewState extends State<DetailedMovieView> {
     return Scaffold(
       extendBodyBehindAppBar: true,
       appBar: MovieAppMenu(),
-      backgroundColor: Color(0xFF1C1D21),
+      backgroundColor: Theme.of(context).colorScheme.secondary,
       body: SafeArea(
         child: SingleChildScrollView(
           child: ListenableBuilder(
@@ -59,7 +60,7 @@ class _DetailedMovieViewState extends State<DetailedMovieView> {
                       Text(
                         "Pedimos desculpas! Não conseguimos encontrar o filme selecionado",
                         style: GoogleFonts.roboto(
-                          color: Color(0xFFF0F5FF),
+                          color: AppColors.iceBlue,
                           fontWeight: .w400,
                           fontSize: 16,
                         ),
@@ -95,7 +96,7 @@ class _DetailedMovieViewState extends State<DetailedMovieView> {
                             style: GoogleFonts.roboto(
                               fontWeight: .w400,
                               fontSize: 14,
-                              color: Color(0xFFEDE8DD),
+                              color: AppColors.cream,
                             ),
                             textAlign: .left,
                           ),
@@ -175,7 +176,7 @@ class _MovieInfoItem extends StatelessWidget {
           style: GoogleFonts.roboto(
             fontWeight: .w400,
             fontSize: 14,
-            color: Color(0xFFEDE8DD),
+            color: AppColors.cream,
           ),
         ),
         Text(
@@ -183,7 +184,7 @@ class _MovieInfoItem extends StatelessWidget {
           style: GoogleFonts.roboto(
             fontWeight: .w400,
             fontSize: 14,
-            color: Color(0x99EDE8DD),
+            color: AppColors.cream.withAlpha(0x99),
           ),
         ),
       ],

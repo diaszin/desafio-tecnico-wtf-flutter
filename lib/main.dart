@@ -11,6 +11,7 @@ import 'package:logger/logger.dart';
 import 'package:provider/provider.dart';
 
 import 'domain/repository/movie_repository.dart';
+import 'ui/core/theme/app_theme.dart';
 
 Future<void> main() async {
   Logger logger = Logger(
@@ -81,6 +82,9 @@ class MyApp extends StatelessWidget {
     return MaterialApp.router(
       routerConfig: router,
       title: 'Cine Strem',
+      themeMode: ThemeMode.system,
+      theme: AppTheme.lightTheme,
+      darkTheme: AppTheme.darkTheme,
       debugShowCheckedModeBanner: false,
     );
   }

@@ -41,10 +41,11 @@ void main() {
       mockRepository.getMovieResult = Success(movieFixture());
 
       await tester.pumpWidget(_buildTestable(mockRepository: mockRepository));
-      // Pump sem settle para capturar o estado de loading
+      // Apenas pump (não pumpAndSettle) para capturar o estado de loading
       await tester.pump();
 
       expect(find.byType(FeaturedMovieSectionShimmer), findsOneWidget);
+      await tester.pumpWidget(Container());
     });
   });
 

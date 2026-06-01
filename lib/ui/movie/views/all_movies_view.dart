@@ -4,6 +4,7 @@ import 'package:desafio_tecnico_wtf/ui/core/widgets/featured_movie_section.dart'
 import 'package:desafio_tecnico_wtf/ui/core/widgets/featured_skeleton_widget.dart';
 import 'package:desafio_tecnico_wtf/ui/core/widgets/movie_app_menu_widget.dart';
 import 'package:desafio_tecnico_wtf/ui/core/widgets/movie_list_widget.dart';
+import 'package:desafio_tecnico_wtf/ui/core/theme/app_theme.dart';
 import 'package:desafio_tecnico_wtf/ui/movie/view_models/all_movies_view_models.dart';
 
 import 'package:flutter/material.dart';
@@ -36,7 +37,7 @@ class _AllMoviesViewState extends State<AllMoviesView> {
     return Scaffold(
       extendBodyBehindAppBar: true,
       appBar: MovieAppMenu(),
-      backgroundColor: Color(0xFF1C1D21),
+      backgroundColor: Theme.of(context).colorScheme.secondary,
       body: SafeArea(
         child: SingleChildScrollView(
           child: ListenableBuilder(
@@ -60,7 +61,7 @@ class _AllMoviesViewState extends State<AllMoviesView> {
                       Text(
                         "Ops! Não conseguimos consultar os filmes",
                         style: GoogleFonts.roboto(
-                          color: Color(0xFFF0F5FF),
+                          color: AppColors.iceBlue,
                           fontWeight: .w400,
                           fontSize: 16,
                         ),
