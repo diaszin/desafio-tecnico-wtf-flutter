@@ -14,6 +14,8 @@ import 'domain/repository/movie_repository.dart';
 import 'ui/core/theme/app_theme.dart';
 
 Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+
   Logger logger = Logger(
     filter: null,
     printer: PrettyPrinter(
