@@ -43,7 +43,7 @@ class _AllMoviesViewState extends State<AllMoviesView> {
       body: SafeArea(
         child: SingleChildScrollView(
           child: ListenableBuilder(
-            listenable: vm.loadPopularMoviesCommand,
+            listenable: Listenable.merge([vm.loadPopularMoviesCommand, vm.loadMostRatedMoviesCommand]),
             builder: (context, _) {
               final command = vm.loadPopularMoviesCommand.value;
 
