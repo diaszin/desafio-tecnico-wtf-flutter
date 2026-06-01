@@ -1,3 +1,9 @@
+# 
+
+
+
+<img title="" src="file:///C:/Users/kaiqu/Documents/Projetos/desafio_tecnico_wtf_flutter_geral/desafio-tecnico-wtf/assets/tela1.png" alt="tela1.png" width="171" data-align="inline"><img title="" src="file:///C:/Users/kaiqu/Documents/Projetos/desafio_tecnico_wtf_flutter_geral/desafio-tecnico-wtf/assets/tela2.png" alt="" width="172" data-align="inline">
+
 # 🎬 Cine Stream — Desafio Técnico WTF
 
 Aplicativo Flutter desenvolvido como desafio técnico para a vaga de **Desenvolvedor Júnior** na WTF. O app consome a API do [TMDB (The Movie Database)](https://www.themoviedb.org/) para exibir filmes populares e seus detalhes.
@@ -59,8 +65,6 @@ flutter run -d <device_id>
 
 Liste os dispositivos disponíveis com `flutter devices`.
 
-
-
 ou
 
 ### 5. Rode os testes
@@ -79,6 +83,10 @@ Executa todos os casos de teste de Widgets e unitários
 
 Exibe uma lista atualizada dos filmes mais populares, com cards visuais e informações resumidas.
 
+### 🎬 Lista de Filmes Bem Avaliados
+
+Exibe uma lista atualizada dos filmes bem avaliados, com cards visuais e informações resumidas.
+
 #### 🔍 Detalhes do Filme
 
 Ao selecionar um card, o usuário é direcionado para uma tela com as informações completas do filme selecionado.
@@ -88,8 +96,6 @@ Ao selecionar um card, o usuário é direcionado para uma tela com as informaç�
 A interface se adapta automaticamente ao tema definido nas configurações do sistema.
 
 > **Nota:** No *light mode*, a cor primária foi alterada para azul como exemplo prático do uso dessa funcionalidade.
-
-
 
 ## 📦 Gerenciador de estado e bibliotecas
 
@@ -176,4 +182,4 @@ View  →  ViewModel  →  Repository (interface)  →  Repository (impl)  →  
 
 - Uso de **tags Git** para versionamento semântico das entregas
 - Variáveis sensíveis isoladas em `.env` (não commitado)
-- Separação clara de responsabilidades entre as camadas da aplicação
+  - Separação clara de responsabilidades entre as camadas da aplicação
