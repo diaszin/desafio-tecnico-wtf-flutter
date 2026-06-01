@@ -7,7 +7,6 @@ import 'genre_api_model.dart';
 class MovieApiModel {
   final bool? adult;
   final String? backdropPath;
-  final dynamic belongsToCollection;
   final int? budget;
   final List<GenreApiModel>? genres;
   final String? homepage;
@@ -36,7 +35,6 @@ class MovieApiModel {
   const MovieApiModel({
     this.adult,
     this.backdropPath,
-    this.belongsToCollection,
     this.budget,
     this.genres,
     this.homepage,
@@ -67,7 +65,6 @@ class MovieApiModel {
     return MovieApiModel(
       adult: json['adult'] as bool?,
       backdropPath: json['backdrop_path'] as String?,
-      belongsToCollection: json['belongs_to_collection'],
       budget: json['budget'] as int?,
       genres: (json['genres'] as List<dynamic>?)
           ?.map((v) => GenreApiModel.fromJson(v as Map<String, dynamic>))

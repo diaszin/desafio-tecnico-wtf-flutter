@@ -14,41 +14,36 @@ class MoviesRepositoryHttp extends MovieRepository {
 
   @override
   Future<Result<List<Movie>>> getPopularMovies() async {
-    PopularMoviesApiModel? externalResponseApiModel = await _moviesService
-        .getPopularMovies()
-        .getOrNull();
+    final result = await _moviesService.getPopularMovies();
 
-    if (externalResponseApiModel == null) {
-      return Failure(
-        Exception("Não foi possível listar os filmes mais populares"),
-      );
-    }
-
-    final results = externalResponseApiModel.results;
-
-    if (results.isEmpty) {
-      return Failure(Exception("Não existe filmes populares no momento"));
-    }
-
-    List<Movie> popularMoviesList = results
-        .map((movie) => MovieMapper.modelToDomain(movie))
-        .toList();
-
-    return Success(popularMoviesList);
+    return result.fold(
+      (model) {
+        if (model.results.isEmpty) {
+          return Failure(Exception("Nenhum filme popular encontrado"));
+        }
+        final movies = model.results.map(MovieMapper.modelToDomain).toList();
+        return Success(movies);
+      },
+      (error) => Failure(error), // propaga o erro original
+    );
   }
 
   @override
   Future<Result<Movie>> getMovie(int id) async {
-    MovieApiModel? externalResponse = await _moviesService
-        .getMovie(id)
-        .getOrNull();
+    try {
+      MovieApiModel? externalResponse = await _moviesService
+          .getMovie(id)
+          .getOrNull();
 
-    if (externalResponse == null) {
-      return Failure(Exception("Não foi possível consultar o filme"));
+      if (externalResponse == null) {
+        return Failure(Exception("Não foi possível consultar o filme"));
+      }
+
+      Movie movie = MovieMapper.modelToDomain(externalResponse);
+
+      return Success(movie);
+    } on Exception catch (error) {
+      return Failure(Exception(error));
     }
-
-    Movie movie = MovieMapper.modelToDomain(externalResponse);
-
-    return Success(movie);
   }
 }

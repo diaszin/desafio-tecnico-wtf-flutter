@@ -12,32 +12,40 @@ class MoviesServiceImpl extends MoviesService {
 
   @override
   Future<Result<PopularMoviesApiModel>> getPopularMovies() async {
-    final response = await _apiClient.get("/movie/popular");
+    try {
+      final response = await _apiClient.get("/movie/popular");
 
-    if (response.statusCode == 200) {
-      PopularMoviesApiModel result = PopularMoviesApiModel.fromJson(
-        response.data,
+      if (response.statusCode == 200) {
+        PopularMoviesApiModel result = PopularMoviesApiModel.fromJson(
+          response.data,
+        );
+        return Success(result);
+      }
+
+      return Failure(
+        Exception("Não foi possível consultar os filmes mais populares"),
       );
-      return Success(result);
+    } on Exception catch (error) {
+      return Failure(Exception(error));
     }
-
-    return Failure(
-      Exception("Não foi possível consultar os filmes mais populares"),
-    );
   }
 
   @override
   Future<Result<MovieApiModel>> getMovie(int id) async {
-    final response = await _apiClient.get("/movie/$id");
+    try {
+      final response = await _apiClient.get("/movie/$id");
 
-    if (response.statusCode == 200) {
-      MovieApiModel result = MovieApiModel.fromJson(response.data);
+      if (response.statusCode == 200) {
+        MovieApiModel result = MovieApiModel.fromJson(response.data);
 
-      return Success(result);
+        return Success(result);
+      }
+
+      return Failure(
+        Exception("Não foi possíve consultar o filme com ID: $id"),
+      );
+    } on Exception catch (error) {
+      return Failure(Exception(error));
     }
-
-    return Failure(
-      Exception("Não foi possíve consultar o filme com ID: $id"),
-    );
   }
 }

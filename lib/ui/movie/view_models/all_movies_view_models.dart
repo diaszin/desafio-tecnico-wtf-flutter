@@ -1,5 +1,4 @@
 import 'package:desafio_tecnico_wtf/domain/entities/movie.dart';
-import 'package:desafio_tecnico_wtf/domain/entities/popular_movies.dart';
 import 'package:desafio_tecnico_wtf/domain/repository/movie_repository.dart';
 import 'package:flutter/material.dart';
 import 'package:logger/logger.dart';
