@@ -30,7 +30,7 @@ Aplicativo Flutter desenvolvido como desafio técnico para a vaga de **Desenvolv
 ### 1. Clone o repositório
 
 ```bash
-git clone https://github.com/seu-usuario/desafio-tecnico-wtf.git
+git clone https://github.com/diaszin/desafio-tecnico-wtf.git
 cd desafio-tecnico-wtf
 ```
 
